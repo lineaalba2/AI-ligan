@@ -281,8 +281,7 @@ td.serif{font-weight:500;font-size:16px}
       </nav>
       <div class="tools">
         <select id="monthPick" aria-label="Välj månad"></select>
-        <button id="rotate" aria-pressed="false" hidden><span class="dot"></span></button>
-        <button id="openAdmin" title="Ny månad, poängvikter, deltagare">Administrera</button>
+                <button id="openAdmin" title="Ny månad, poängvikter, deltagare">Administrera</button>
       </div>
     </div>
   </header>
@@ -600,22 +599,16 @@ function renderAll(){
   for(const k of ["wMsg","wDay","wProj","wArt","topN","rotateSeconds"]) $("#"+k).value = state.settings[k] ?? DEFAULT_SETTINGS[k];
 }
 function showView(v){
-  state.view = v;
+  state.view = v; try{ localStorage.setItem("ailigan.view", v); }catch(e){}
   document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-selected", String(t.dataset.view===v)));
   document.querySelectorAll(".view").forEach(s=>s.hidden = s.id!=="view-"+v);
 }
 document.querySelectorAll(".tab").forEach(t=>t.addEventListener("click",()=>showView(t.dataset.view)));
 $("#monthPick").addEventListener("change", e=>{ state.monthKey = e.target.value; renderNow(compute(state.monthKey)); });
 
-// screen mode rotation
-let rotTimer=null; const ORDER=["now","top","areas","awards","hist","rules"];
-function setRotate(on){
-  $("#rotate").setAttribute("aria-pressed", String(on));
-  clearInterval(rotTimer); rotTimer=null;
-  if(on){ rotTimer = setInterval(()=>{ const i=ORDER.indexOf(state.view); showView(ORDER[(i+1)%ORDER.length]); }, Math.max(5,(state.settings.rotateSeconds||20))*1000); }
-  try{ localStorage.setItem("ailigan.rotate", on?"1":"0"); }catch(e){}
-}
-$("#rotate").addEventListener("click", ()=> setRotate($("#rotate").getAttribute("aria-pressed")!=="true"));
+// kom ihåg vald flik mellan omladdningar; ingen automatisk växling
+try{ localStorage.removeItem("ailigan.rotate"); }catch(e){}
+function startView(){ let v="now"; try{ const s=localStorage.getItem("ailigan.view"); if(s && document.getElementById("view-"+s)) v=s; }catch(e){} showView(v); }
 
 // ---------- admin ----------
 const ADMIN_PASSWORD = "admin"; // enkelt lås mot oavsiktliga ändringar – inte ett säkerhetsskydd
@@ -689,7 +682,7 @@ function download(name, obj){ const a=document.createElement("a"); a.href=URL.cr
 
 $("#saveSettings").addEventListener("click", ()=>{
   const s={}; for(const k of ["wMsg","wDay","wProj","wArt","topN","rotateSeconds"]) s[k]=parseFloat($("#"+k).value)||0; if(!s.topN) s.topN=DEFAULT_SETTINGS.topN; if(!s.rotateSeconds) s.rotateSeconds=DEFAULT_SETTINGS.rotateSeconds;
-  state.settings=s; renderAll(); if(rotTimer) setRotate(true);
+  state.settings=s; renderAll();
   $("#settingsStatus").textContent="Vikterna används i den här vyn. Ladda ner settings.json för att göra dem permanenta."; $("#settingsStatus").className="status ok";
 });
 $("#dlSettings").addEventListener("click", ()=>download("settings.json", state.settings));
@@ -721,8 +714,7 @@ $("#dlRoster").addEventListener("click", ()=>download("roster.json", state.roste
 let toastT; function toast(msg){ const t=$("#toast"); t.textContent=msg; t.classList.add("show"); clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove("show"),2400); }
 
 // ---------- boot ----------
-showView("now");
-try{ if(localStorage.getItem("ailigan.rotate")==="1") setRotate(true); }catch(e){}
+startView();
 (async()=>{
   try{
     const j = async p => { const r = await fetch(DATA_BASE+p, {cache:"no-store"}); if(!r.ok) throw new Error(p+" ("+r.status+")"); return r.json(); };
