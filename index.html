@@ -428,7 +428,7 @@ function renderNow(c){
       <div class="lbl">AI-poäng per licens i snitt</div>
       <div class="meter"><i style="width:${(o.avg/maxAvg*100).toFixed(1)}%"></i></div>
       ${i===0 && c.offices[1] ? `<div class="margin">${fmt(o.avg-c.offices[1].avg)} poäng före ${esc(c.offices[1].name)}</div>` : (i>0 ? `<div class="margin" style="color:var(--muted)">${fmt(c.offices[0].avg-o.avg)} poäng efter ${esc(c.offices[0].name)}</div>` : "")}
-      <div class="facts"><span><b class="num">${pct(o.active,o.count)} %</b> aktiva</span><span><b class="num">${o.regular}</b> använde Claude tio dagar eller fler</span><span><b class="num">${pct(o.cowork,o.chat+o.cowork)} %</b> av meddelandena i Cowork</span></div>
+      <div class="facts"><span><b class="num">${pct(o.active,o.count)} %</b> aktiva</span><span><b class="num">${pct(o.regular,o.count)} %</b> använde Claude tio dagar eller fler</span><span><b class="num">${pct(o.cowork,o.chat+o.cowork)} %</b> av meddelandena i Cowork</span></div>
     </div>`).join("");
   const topN = state.settings.topN || 5;
   $("#topNote").textContent = `Topp ${topN} per kontor · AI-poäng`;
