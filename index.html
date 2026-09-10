@@ -148,7 +148,50 @@ nav.tabs{display:flex;gap:22px;justify-content:flex-end;flex-wrap:wrap}
 .award .d{font-size:12.5px;color:var(--muted);margin-top:6px}
 .award .who{font-size:12.5px;color:var(--faint)}
 
+/* utmärkelser – hero + honors */
+.hero{background:var(--green);color:var(--green-ink);--muted:color-mix(in oklab,var(--green-ink) 72%,transparent);padding:32px 36px 30px;margin-top:-1px}
+.hero .caps{color:var(--muted)}
+.hero-row{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;margin-top:14px}
+.hero-name{font-size:clamp(44px,5vw,88px);font-weight:500;line-height:.95;letter-spacing:-.02em}
+.hero-who{margin-top:10px;font-size:15px;color:var(--muted)}
+.hero-n{font-size:clamp(64px,7vw,120px);font-weight:300;line-height:.9;letter-spacing:-.04em;text-align:right}
+.hero-n small{display:block;font-size:13px;letter-spacing:.02em;font-weight:400;color:var(--muted);margin-top:8px;text-align:right}
+.hero-d{margin-top:22px;padding-top:14px;border-top:1px solid color-mix(in oklab,var(--green-ink) 28%,transparent);font-size:14px;color:var(--muted)}
+.hero--pending .hero-name{font-size:24px;font-weight:400;color:var(--muted);margin-top:10px}
+.honors{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.honor{padding:28px 32px 30px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.honor:first-child{padding-left:0}
+.honor:last-child{border-right:0;padding-right:0}
+.honor-n{font-size:clamp(48px,4.6vw,80px);font-weight:300;line-height:.9;letter-spacing:-.04em;color:var(--brown);margin-top:14px}
+.honor-n small{display:block;font-size:12.5px;letter-spacing:.02em;color:var(--muted);margin-top:8px}
+.honor-name{font-size:clamp(22px,1.8vw,30px);font-weight:500;line-height:1.1;margin-top:22px}
+.honor-name.pending{font-size:15px;font-weight:400;color:var(--muted);margin-top:14px;max-width:32ch}
+.honor-who{font-size:13px;color:var(--muted);margin-top:6px}
+.honor-d{font-size:13px;color:var(--muted);margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+@media (max-width:1000px){.honor{border-right:0;padding-left:0;padding-right:0}}
 /* historik */
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.kpi{padding:24px 28px 26px;border-right:1px solid var(--line)}
+.kpi:first-child{padding-left:0}.kpi:last-child{border-right:0;padding-right:0}
+.kpi-n{font-size:clamp(48px,4.4vw,76px);font-weight:300;line-height:.9;letter-spacing:-.04em;margin-top:12px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.kpi-n .trend{font-size:13px}
+.kpi-d{font-size:13px;color:var(--muted);margin-top:10px}
+.kpi svg{display:block;width:100%;height:36px;margin-top:16px;overflow:visible}
+.kpi svg path{fill:none;stroke:var(--brown);stroke-width:2}
+.kpi svg circle{fill:var(--brown)}
+@media (max-width:1000px){.kpis{grid-template-columns:1fr 1fr}.kpi{border-right:0;padding-left:0;padding-right:0}}
+.rounds{display:grid}
+.round{display:grid;grid-template-columns:minmax(0,1.1fr) repeat(6,minmax(0,1fr));gap:24px;padding:26px 0 28px;border-bottom:1px solid var(--line);align-items:start}
+.round:last-child{border-bottom:0}
+.round-m{font-size:clamp(26px,2.2vw,36px);font-weight:500;line-height:1.05}
+.round-m small{display:block;font-size:12.5px;color:var(--muted);font-weight:400;margin-top:8px;letter-spacing:.02em}
+.cell .caps{font-size:10.5px}
+.cell-v{font-size:clamp(17px,1.3vw,21px);font-weight:500;line-height:1.15;margin-top:10px}
+.cell-s{font-size:12.5px;color:var(--muted);margin-top:4px}
+.cell-v i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px;vertical-align:0;background:var(--oc)}
+.cell.dim .cell-v{color:var(--faint);font-weight:400}
+@media (max-width:1100px){.round{grid-template-columns:1fr 1fr 1fr}.round-m{grid-column:1/-1}}
+
 .chart{width:100%;height:auto;display:block;margin-top:14px}
 .chart text{fill:var(--muted);font-family:var(--sans);font-size:11.5px}
 .chart .grid line{stroke:var(--line)}
@@ -269,24 +312,23 @@ td.serif{font-weight:500;font-size:16px}
   <section class="view" id="view-awards" hidden>
     <div class="sec">
       <div class="sechead sechead--bare"></div>
-      <div class="awards awards--wide" id="awards"></div>
+      <div id="awards"></div>
     </div>
   </section>
 
   <section class="view" id="view-hist" hidden>
-    <div class="sec two">
-      <div>
-        <div class="caps sechead"><span>Kontorskampen över tid</span><small>Snitt AI-poäng per licens</small></div>
-        <div id="histChart"></div>
-      </div>
-      <div>
-        <div class="caps sechead"><span>Hela firman</span><small>Per omgång</small></div>
-        <div class="tablewrap"><table id="firmTable"></table></div>
-      </div>
+    <div class="sec">
+      <div class="sechead sechead--bare"></div>
+      <div class="kpis" id="kpis"></div>
+    </div>
+    <div class="sec">
+      <div class="caps sechead"><span>Kontorskampen över tid</span><small>Snitt AI-poäng per licens</small></div>
+      <div id="histChart"></div>
     </div>
     <div class="sec">
       <div class="caps sechead"><span>Hall of fame</span><small>Vinnare per omgång</small></div>
-      <div class="tablewrap"><table id="hofTable"></table></div>
+      <div id="hofTable"></div>
+      <table id="firmTable" hidden></table>
     </div>
   </section>
 
@@ -414,17 +456,17 @@ function compute(key){
 
   // awards
   const awards = [];
-  awards.push({t:"Månadens AI-stjärna", w: ranked[0], d: ranked[0] ? `${fmt(ranked[0].pts)} poäng · ${ranked[0].offices.join("/")||"–"}` : ""});
+  awards.push({t:"Månadens AI-stjärna", w: ranked[0], n: ranked[0]?fmt(ranked[0].pts):"", u:"AI-poäng", d: ranked[0] ? `${ranked[0].days} aktiva dagar · ${fmt(ranked[0].msgs)} meddelanden · ${ranked[0].projects} projekt` : ""});
   const taken = new Set(ranked[0]?[ranked[0].email]:[]); const fresh = r => r && !taken.has(r.email); const take = r => { if(r) taken.add(r.email); return r; };
   const stamina = take([...eligible].sort((a,b)=>b.days-a.days||b.pts-a.pts).find(fresh));
-  awards.push({t:"Uthålligheten", w: stamina, d: stamina ? `${stamina.days} aktiva dagar av ${daysIn(m)}` : ""});
+  awards.push({t:"Uthålligheten", w: stamina, n: stamina?String(stamina.days):"", u:`aktiva dagar av ${daysIn(m)}`, d: stamina ? `Flest dagar med Claude under omgången · ${fmt(stamina.pts)} poäng` : ""});
   const builder = take([...eligible].sort((a,b)=>b.projects-a.projects||b.pts-a.pts).find(fresh));
-  awards.push({t:"Projektbyggaren", w: builder && builder.projects>0 ? builder : null, d: builder ? `${builder.projects} nya projekt med egna instruktioner` : "", pending:"Ingen skapade projekt den här månaden"});
+  awards.push({t:"Projektbyggaren", w: builder && builder.projects>0 ? builder : null, n: builder?String(builder.projects):"", u:"nya projekt", d: builder ? `Flest projekt med egna instruktioner · ${fmt(builder.pts)} poäng` : "", pending:"Ingen skapade projekt den här månaden"});
   if(prevBy){
     const rocket = [...eligible].map(r=>({r, gain: r.pts - (prevBy[r.email]?.pts||0)})).sort((a,b)=>b.gain-a.gain).find(x=>fresh(x.r)); if(rocket) take(rocket.r);
-    awards.push({t:"Raketen", w: rocket && rocket.gain>0 ? rocket.r : null, d: rocket ? `+${fmt(rocket.gain)} poäng sedan ${state.months[pk].label}` : "", pending:"Ingen ökade sedan förra månaden"});
+    awards.push({t:"Raketen", w: rocket && rocket.gain>0 ? rocket.r : null, n: rocket?`+${fmt(rocket.gain)}`:"", u:"poäng mer än förra omgången", d: rocket ? `Störst ökning sedan ${state.months[pk].label}` : "", pending:"Ingen ökade sedan förra månaden"});
     const newcomer = take([...eligible].filter(r => !(prevBy[r.email]?.days>0) && r.days>0).sort((a,b)=>b.pts-a.pts).find(fresh));
-    awards.push({t:"Nykomlingen", w: newcomer, d: newcomer ? `Första aktiva månaden · ${fmt(newcomer.pts)} poäng` : "", pending:"Inga nya användare den här månaden"});
+    awards.push({t:"Nykomlingen", w: newcomer, n: newcomer?fmt(newcomer.pts):"", u:"poäng första aktiva månaden", d: newcomer ? `Bäst av dem som inte använde Claude förra omgången` : "", pending:"Inga nya användare den här månaden"});
   } else {
     awards.push({t:"Raketen", w:null, pending:"Delas ut från och med andra omgången – störst ökning mot förra månaden"});
     awards.push({t:"Nykomlingen", w:null, pending:"Delas ut från och med andra omgången – bäst av dem som var inaktiva förra månaden"});
@@ -450,8 +492,6 @@ function renderNow(c){
   $("#monthLabel").innerHTML = `${esc(mon)} <em>${esc(yr||"")}</em>`;
   $("#periodLabel").textContent = c.month.period||"";
   $("#roundLabel").textContent = `Omgång ${ks.indexOf(c.key)+1}`;
-  const star = c.awards[0]?.w;
-  $("#lede").innerHTML = c.offices[0] ? `<b>${esc(c.offices[0].name)}</b> leder kontorskampen${star ? `, och <b>${esc(star.name)}</b> är månadens AI-stjärna.` : "."}` : "";
   const maxAvg = Math.max(...c.offices.map(o=>o.avg),1);
   $("#officeCards").innerHTML = c.offices.map((o,i)=>`
     <div class="office ${i===0?"leader":""}" style="--oc:${OFFICE_VAR[o.name]}">
@@ -481,16 +521,29 @@ function renderNow(c){
       <div class="track"><i style="width:${(a.avg/maxA*100).toFixed(1)}%"></i></div>
       <div class="val num">${fmt(a.avg)}</div>
     </div>`).join("") || `<div class="empty">Inga områden kopplade ännu</div>`;
-  $("#awards").innerHTML = c.awards.map(a=>`
-    <div class="award"><div class="caps">${esc(a.t)}</div>
-      ${a.w ? `<div class="w">${esc(a.w.name)}</div><div class="d">${esc(a.d)}</div>` : `<div class="w pending">${esc(a.pending||"–")}</div>`}
-    </div>`).join("");
+  const who = r => [r.title, r.offices.join("/"), r.areas[0]].filter(Boolean).join(" · ");
+  const [star, ...rest] = c.awards;
+  $("#awards").innerHTML = (star.w ? `
+    <div class="hero">
+      <div class="caps">${esc(star.t)}</div>
+      <div class="hero-row">
+        <div><div class="hero-name">${esc(star.w.name)}</div><div class="hero-who">${esc(who(star.w))}</div></div>
+        <div class="hero-n num">${esc(star.n)}<small>${esc(star.u)}</small></div>
+      </div>
+      <div class="hero-d">${esc(star.d)}</div>
+    </div>` : `<div class="hero hero--pending"><div class="caps">${esc(star.t)}</div><div class="hero-name">${esc(star.pending||"–")}</div></div>`) +
+    `<div class="honors">` + rest.map(a=>`
+    <div class="honor ${a.w?"":"pending"}">
+      <div class="caps">${esc(a.t)}</div>
+      ${a.w ? `<div class="honor-n num">${esc(a.n)}<small>${esc(a.u)}</small></div><div class="honor-name">${esc(a.w.name)}</div><div class="honor-who">${esc(who(a.w))}</div><div class="honor-d">${esc(a.d)}</div>`
+             : `<div class="honor-name pending">${esc(a.pending||"–")}</div>`}
+    </div>`).join("") + `</div>`;
 }
 
 function renderHist(){
   const ks = monthKeys(); const cs = ks.map(compute);
   if(!cs.length){ $("#histChart").innerHTML = `<div class="empty">Historiken fylls på när fler månader laddas upp.</div>`; $("#firmTable").innerHTML=""; $("#hofTable").innerHTML=""; return; }
-  const W=760,H=320,pl=44,pr=70,pt=20,pb=36; const iw=W-pl-pr, ih=H-pt-pb;
+  const W=1400,H=380,pl=48,pr=140,pt=24,pb=40; const iw=W-pl-pr, ih=H-pt-pb;
   const allVals = cs.flatMap(c=>c.offices.map(o=>o.avg)); const maxV = Math.max(...allVals,10)*1.12;
   const x = i => pl + (cs.length===1 ? iw/2 : i*iw/(cs.length-1)); const y = v => pt + ih - v/maxV*ih;
   const ticks = 4; let grid=""; for(let t=1;t<=ticks;t++){ const v=maxV*t/ticks; grid += `<line x1="${pl}" x2="${W-pr}" y1="${y(v)}" y2="${y(v)}"/><text x="${pl-10}" y="${y(v)+4}" text-anchor="end">${fmt(v)}</text>`; }
@@ -503,13 +556,27 @@ function renderHist(){
       pts.map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="4" fill="${OFFICE_VAR[o]}" stroke="var(--bg)" stroke-width="2"><title>${esc(o)}: ${fmt(p[2])}</title></circle>`).join("") +
       `<text class="lbl" x="${last[0]+12}" y="${last[1]+5}" style="fill:var(--ink)">${esc(o)} ${fmt(last[2])}</text>`;
   }).join("");
-  $("#histChart").innerHTML = `<svg class="chart" viewBox="0 0 ${W+60} ${H}" role="img" aria-label="Snitt AI-poäng per kontor och månad"><g class="grid">${grid}</g><line class="axis" x1="${pl}" x2="${W-pr}" y1="${pt+ih}" y2="${pt+ih}"/>${xl}${series}</svg>
+  $("#histChart").innerHTML = (cs.length<2?`<p class="note" style="margin:14px 0 0">Kurvorna ritas när nästa omgång läggs till – än så länge finns bara en punkt per kontor.</p>`:"")+`<svg class="chart" viewBox="0 0 ${W+20} ${H}" role="img" aria-label="Snitt AI-poäng per kontor och månad"><g class="grid">${grid}</g><line class="axis" x1="${pl}" x2="${W-pr}" y1="${pt+ih}" y2="${pt+ih}"/>${xl}${series}</svg>
     <div class="legend">${OFFICES.map(o=>`<span><i style="background:${OFFICE_VAR[o]}"></i>${esc(o)}</span>`).join("")}</div>`;
-  $("#firmTable").innerHTML = `<thead><tr><th>Omgång</th><th class="n">Snitt/licens</th><th class="n">Aktiva</th><th class="n">10+ dagar</th><th class="n">Chatt</th><th class="n">Cowork</th><th class="n">Projekt</th></tr></thead><tbody>${[...cs].reverse().map(c=>`<tr><td class="serif">${esc(c.month.label)}</td><td class="n serif num">${fmt(c.firm.avg)}</td><td class="n num">${c.firm.active}/${c.firm.count}</td><td class="n num">${c.firm.regular}</td><td class="n num">${fmt(c.firm.chat)}</td><td class="n num">${fmt(c.firm.cowork)}</td><td class="n num">${c.firm.projects}</td></tr>`).join("")}</tbody>`;
-  $("#hofTable").innerHTML = `<thead><tr><th>Omgång</th><th>Kontorskampen</th><th>Stockholm</th><th>Göteborg</th><th>Malmö</th><th>Områdesmästare</th><th>Uthålligheten</th><th>Projektbyggaren</th><th>Raketen</th></tr></thead><tbody>${[...cs].reverse().map(c=>{
-    const off = o => { const t=c.offices.find(z=>z.name===o)?.top[0]; return t?`${esc(t.name)}<br><small class="num" style="color:var(--muted)">${fmt(t.pts)} p</small>`:"–"; };
-    const aw = t => { const a=c.awards.find(z=>z.t===t); return a?.w ? esc(a.w.name) : "–"; };
-    return `<tr><td class="serif">${esc(c.month.label)}</td><td><span class="tag">${esc(c.offices[0].name)}</span></td><td>${off("Stockholm")}</td><td>${off("Göteborg")}</td><td>${off("Malmö")}</td><td>${c.areas[0]?esc(c.areas[0].name):"–"}</td><td>${aw("Uthålligheten")}</td><td>${aw("Projektbyggaren")}</td><td>${aw("Raketen")}</td></tr>`;}).join("")}</tbody>`;
+  const last=cs[cs.length-1], prev=cs.length>1?cs[cs.length-2]:null;
+  const spark = (vals)=>{ if(vals.length<2) return `<svg viewBox="0 0 100 36"><circle cx="50" cy="18" r="3"/></svg>`; const mx=Math.max(...vals,1), mn=Math.min(...vals,0); const pts=vals.map((v,i)=>[i/(vals.length-1)*100, 32-(v-mn)/((mx-mn)||1)*28]); return `<svg viewBox="0 0 100 36" preserveAspectRatio="none"><path d="${pts.map((p,i)=>(i?"L":"M")+p[0].toFixed(1)+" "+p[1].toFixed(1)).join(" ")}"/><circle cx="${pts[pts.length-1][0]}" cy="${pts[pts.length-1][1]}" r="2.5"/></svg>`; };
+  const kpi = (t,n,p,d,vals,suffix="")=>`<div class="kpi"><div class="caps">${esc(t)}</div><div class="kpi-n num">${n}${suffix}${p!=null?trend(parseFloat(String(n).replace(/\s/g,"")),p):""}</div><div class="kpi-d">${esc(d)}</div>${spark(vals)}</div>`;
+  $("#kpis").innerHTML =
+    kpi("Snitt per licens", fmt(last.firm.avg), prev?prev.firm.avg:null, "AI-poäng, hela firman", cs.map(c=>c.firm.avg)) +
+    kpi("Andel aktiva", pct(last.firm.active,last.firm.count), prev?pct(prev.firm.active,prev.firm.count):null, "använde Claude minst en dag", cs.map(c=>pct(c.firm.active,c.firm.count)), " %") +
+    kpi("Regelbundna", pct(last.firm.regular,last.firm.count), prev?pct(prev.firm.regular,prev.firm.count):null, "använde Claude tio dagar eller fler", cs.map(c=>pct(c.firm.regular,c.firm.count)), " %") +
+    kpi("Meddelanden", fmt(last.firm.msgs), prev?prev.firm.msgs:null, `${fmt(last.firm.chat)} i chatten · ${fmt(last.firm.cowork)} i Cowork`, cs.map(c=>c.firm.msgs));
+  const cell=(t,v,s,cls="",oc="")=>`<div class="cell ${cls}" ${oc?`style="--oc:${oc}"`:""}><div class="caps">${esc(t)}</div><div class="cell-v">${oc?"<i></i>":""}${v}</div>${s?`<div class="cell-s">${esc(s)}</div>`:""}</div>`;
+  $("#hofTable").innerHTML = `<div class="rounds">${[...cs].reverse().map(c=>{
+    const aw = t => c.awards.find(z=>z.t===t);
+    const awc = (t,fallbackLabel)=>{ const a=aw(t); return a?.w ? cell(t, esc(a.w.name), a.n?`${a.n} ${a.u}`:"") : cell(t,"–","",  "dim"); };
+    const o=c.offices[0];
+    return `<div class="round">
+      <div class="round-m">${esc(c.month.label)}<small>${esc(c.month.period||"")}</small></div>
+      ${cell("Kontorskampen", esc(o.name), `${fmt(o.avg)} poäng per licens`, "", OFFICE_VAR[o.name])}
+      ${c.areas[0]?cell("Områdesmästare", esc(c.areas[0].name), `${fmt(c.areas[0].avg)} poäng per person`):cell("Områdesmästare","–","","dim")}
+      ${awc("Månadens AI-stjärna")}${awc("Uthålligheten")}${awc("Projektbyggaren")}${awc("Raketen")}
+    </div>`;}).join("")}</div>`;
 }
 
 function renderRules(){
