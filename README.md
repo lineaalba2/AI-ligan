@@ -15,6 +15,10 @@ Vill du sätta egen rubrik för en månad, lägg till under `"labels"` i `index.
 "labels": { "membersanalytics_20260910to20261009.csv": { "label": "Oktober 2026", "period": "10 sep – 9 okt" } }
 ```
 
+## Administrera
+
+Knappen *Administrera* är låst med lösenordet `admin` (konstanten `ADMIN_PASSWORD` i `index.html`). Det är ett enkelt lås mot oavsiktliga ändringar, inte ett säkerhetsskydd – all data på sidan är ändå läsbar för den som har länken.
+
 ## Deltagare och poängvikter
 
 - `data/roster.json` – kontor, arbetsområde och titel per e-postadress, samt `excluded` för den som står utanför prisjakten. Nya personer i en CSV som saknas här visas som "Ej placerad".
