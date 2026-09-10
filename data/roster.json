@@ -1,0 +1,1181 @@
+{
+ "people": {
+  "christian.nilsson@foyen.se": {
+   "name": "Christian Nilsson",
+   "offices": [
+    "Malmö"
+   ],
+   "areas": [
+    "Entreprenadjuridik",
+    "Offentliga affärer"
+   ],
+   "title": "Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "johan.claesson.laakso@foyen.se": {
+   "name": "Johan Claesson Laakso",
+   "offices": [
+    "Göteborg"
+   ],
+   "areas": [
+    "Mark och miljö",
+    "Entreprenadjuridik",
+    "Tvistlösning"
+   ],
+   "title": "Biträdande jurist",
+   "excluded": false,
+   "note": ""
+  },
+  "andre.degerfeldt@foyen.se": {
+   "name": "André Degerfeldt",
+   "offices": [
+    "Malmö"
+   ],
+   "areas": [
+    "Entreprenadjuridik",
+    "Tvistlösning",
+    "Offentliga affärer"
+   ],
+   "title": "Biträdande jurist",
+   "excluded": false,
+   "note": ""
+  },
+  "andriano.sodergren@foyen.se": {
+   "name": "Andriano Södergren",
+   "offices": [
+    "Malmö"
+   ],
+   "areas": [
+    "Energi och innovation",
+    "Entreprenadjuridik",
+    "Tvistlösning"
+   ],
+   "title": "Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "bianca.benatti@foyen.se": {
+   "name": "Bianca Benatti",
+   "offices": [
+    "Malmö"
+   ],
+   "areas": [
+    "Entreprenadjuridik",
+    "Tvistlösning"
+   ],
+   "title": "Biträdande jurist",
+   "excluded": false,
+   "note": ""
+  },
+  "edvin.svensson@foyen.se": {
+   "name": "Edvin Svensson",
+   "offices": [
+    "Malmö"
+   ],
+   "areas": [
+    "Entreprenadjuridik",
+    "Fastighetsrätt",
+    "Tvistlösning"
+   ],
+   "title": "Biträdande jurist",
+   "excluded": false,
+   "note": ""
+  },
+  "henrik.akesson@foyen.se": {
+   "name": "Henrik Åkesson",
+   "offices": [
+    "Malmö"
+   ],
+   "areas": [
+    "Entreprenadjuridik",
+    "Tvistlösning"
+   ],
+   "title": "Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "anja.norderyd@foyen.se": {
+   "name": "Anja Norderyd",
+   "offices": [
+    "Göteborg"
+   ],
+   "areas": [
+    "Energi och innovation",
+    "Entreprenadjuridik",
+    "Fastighetsrätt",
+    "Tvistlösning"
+   ],
+   "title": "Partner, Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "christoffer.lofquist@foyen.se": {
+   "name": "Christoffer Löfquist",
+   "offices": [
+    "Malmö"
+   ],
+   "areas": [
+    "Entreprenadjuridik",
+    "Fastighetsrätt",
+    "Offentliga affärer",
+    "Tvistlösning"
+   ],
+   "title": "Partner, Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "filippa.jakobsson@foyen.se": {
+   "name": "Filippa",
+   "offices": [],
+   "areas": [],
+   "title": "",
+   "excluded": true,
+   "note": "Admin"
+  },
+  "marielle.pettersson@foyen.se": {
+   "name": "Marielle Pettersson",
+   "offices": [
+    "Malmö",
+    "Göteborg"
+   ],
+   "areas": [
+    "Entreprenadjuridik",
+    "Fastighetsrätt",
+    "Tvistlösning"
+   ],
+   "title": "Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "tomas.rudenstam@foyen.se": {
+   "name": "Tomas Rudenstam",
+   "offices": [
+    "Stockholm"
+   ],
+   "areas": [
+    "Energi och innovation",
+    "Tvistlösning"
+   ],
+   "title": "Partner, Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "fredrik.jonasson@foyen.se": {
+   "name": "Fredrik Jonasson",
+   "offices": [
+    "Stockholm"
+   ],
+   "areas": [
+    "Entreprenadjuridik",
+    "Mark och miljö",
+    "Offentliga affärer"
+   ],
+   "title": "Biträdande jurist",
+   "excluded": false,
+   "note": ""
+  },
+  "albin.olausson@foyen.se": {
+   "name": "Albin Olausson",
+   "offices": [
+    "Göteborg"
+   ],
+   "areas": [
+    "Entreprenadjuridik",
+    "Fastighetsrätt",
+    "Tvistlösning"
+   ],
+   "title": "Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "marcus.nordenstam@foyen.se": {
+   "name": "Marcus Nordenstam",
+   "offices": [
+    "Malmö"
+   ],
+   "areas": [
+    "Entreprenadjuridik",
+    "Tvistlösning"
+   ],
+   "title": "Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "oscar.wackling@foyen.se": {
+   "name": "Oscar Wackling",
+   "offices": [
+    "Göteborg"
+   ],
+   "areas": [
+    "Energi och innovation",
+    "Entreprenadjuridik",
+    "Fastighetsrätt",
+    "Offentliga affärer",
+    "Tvistlösning"
+   ],
+   "title": "Partner, Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "dan.johansson@foyen.se": {
+   "name": "Dan Johansson",
+   "offices": [
+    "Göteborg"
+   ],
+   "areas": [
+    "Tvistlösning"
+   ],
+   "title": "Advokat / Specialist",
+   "excluded": false,
+   "note": ""
+  },
+  "kimia.alemtar@foyen.se": {
+   "name": "Kimia Alemtar",
+   "offices": [
+    "Malmö"
+   ],
+   "areas": [
+    "Energi och innovation",
+    "Entreprenadjuridik"
+   ],
+   "title": "Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "andreas.lindstrom@foyen.se": {
+   "name": "Andreas Lindström",
+   "offices": [
+    "Malmö"
+   ],
+   "areas": [
+    "Energi och innovation"
+   ],
+   "title": "Partner, Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "anna.hagelberg@foyen.se": {
+   "name": "Anna Hagelberg",
+   "offices": [
+    "Göteborg"
+   ],
+   "areas": [
+    "Energi och innovation",
+    "Entreprenadjuridik",
+    "Offentliga affärer",
+    "Tvistlösning"
+   ],
+   "title": "Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "anna.larsson@foyen.se": {
+   "name": "Anna Larsson",
+   "offices": [
+    "Malmö"
+   ],
+   "areas": [
+    "Energi och innovation",
+    "Offentliga affärer"
+   ],
+   "title": "Biträdande jurist",
+   "excluded": false,
+   "note": ""
+  },
+  "linnea.andersson@foyen.se": {
+   "name": "Linnea Andersson",
+   "offices": [
+    "Stockholm"
+   ],
+   "areas": [
+    "Fastighetsrätt"
+   ],
+   "title": "Biträdande jurist",
+   "excluded": false,
+   "note": ""
+  },
+  "anna.lignell@foyen.se": {
+   "name": "Anna Lignell",
+   "offices": [
+    "Stockholm"
+   ],
+   "areas": [
+    "Entreprenadjuridik",
+    "Tvistlösning"
+   ],
+   "title": "Biträdande jurist",
+   "excluded": false,
+   "note": ""
+  },
+  "pauline.king@foyen.se": {
+   "name": "Pauline King",
+   "offices": [
+    "Göteborg"
+   ],
+   "areas": [],
+   "title": "Kontorsassistent",
+   "excluded": false,
+   "note": ""
+  },
+  "helene.bovet@foyen.se": {
+   "name": "Hélène Bovet",
+   "offices": [
+    "Malmö"
+   ],
+   "areas": [],
+   "title": "Kontorsassistent",
+   "excluded": false,
+   "note": ""
+  },
+  "jan.berg@foyen.se": {
+   "name": "Jan Berg",
+   "offices": [
+    "Stockholm"
+   ],
+   "areas": [
+    "Fastighetsrätt"
+   ],
+   "title": "Partner, Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "alexander.schroder@foyen.se": {
+   "name": "Alexander Schröder",
+   "offices": [
+    "Stockholm"
+   ],
+   "areas": [
+    "Fastighetsrätt"
+   ],
+   "title": "Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "moa.lindholm@foyen.se": {
+   "name": "Moa Lindholm",
+   "offices": [
+    "Stockholm"
+   ],
+   "areas": [
+    "Fastighetsrätt",
+    "Energi och innovation"
+   ],
+   "title": "Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "daniel.sjoholm@foyen.se": {
+   "name": "Daniel Sjöholm",
+   "offices": [
+    "Malmö"
+   ],
+   "areas": [
+    "Energi och innovation"
+   ],
+   "title": "Partner, Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "nora.vitestam@foyen.se": {
+   "name": "Nora Vitestam",
+   "offices": [
+    "Stockholm"
+   ],
+   "areas": [
+    "Fastighetsrätt"
+   ],
+   "title": "Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "ingeborg.forkman@foyen.se": {
+   "name": "Ingeborg Forkman",
+   "offices": [
+    "Malmö"
+   ],
+   "areas": [
+    "Energi och innovation",
+    "Mark och miljö",
+    "Offentliga affärer",
+    "Fastighetsrätt"
+   ],
+   "title": "Biträdande jurist",
+   "excluded": false,
+   "note": ""
+  },
+  "gulay.lauritzen@foyen.se": {
+   "name": "Gulay Lauritzen",
+   "offices": [
+    "Göteborg"
+   ],
+   "areas": [
+    "Mark och miljö"
+   ],
+   "title": "Paralegal",
+   "excluded": false,
+   "note": ""
+  },
+  "edvin.lundberg@foyen.se": {
+   "name": "Edvin Lundberg",
+   "offices": [
+    "Stockholm"
+   ],
+   "areas": [
+    "Entreprenadjuridik"
+   ],
+   "title": "Biträdande jurist",
+   "excluded": false,
+   "note": ""
+  },
+  "jonas.nilsson@foyen.se": {
+   "name": "Jonas Nilsson",
+   "offices": [
+    "Göteborg"
+   ],
+   "areas": [
+    "Tvistlösning"
+   ],
+   "title": "Partner, Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "per.vestman@foyen.se": {
+   "name": "Per Vestman",
+   "offices": [
+    "Malmö"
+   ],
+   "areas": [
+    "Entreprenadjuridik",
+    "Offentliga affärer",
+    "Tvistlösning"
+   ],
+   "title": "Partner, Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "eric.selander@foyen.se": {
+   "name": "Eric Selander",
+   "offices": [
+    "Stockholm"
+   ],
+   "areas": [
+    "Entreprenadjuridik",
+    "Tvistlösning"
+   ],
+   "title": "Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "josefin.lepp@foyen.se": {
+   "name": "Josefin Lepp",
+   "offices": [
+    "Malmö"
+   ],
+   "areas": [
+    "Energi och innovation"
+   ],
+   "title": "Biträdande jurist",
+   "excluded": false,
+   "note": ""
+  },
+  "ida.m.ulfsdotter@foyen.se": {
+   "name": "Ida M Ulfsdotter",
+   "offices": [
+    "Malmö"
+   ],
+   "areas": [
+    "Entreprenadjuridik",
+    "Tvistlösning",
+    "Energi och innovation"
+   ],
+   "title": "Partner, Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "helena.olsson@foyen.se": {
+   "name": "Helena Olsson",
+   "offices": [
+    "Stockholm"
+   ],
+   "areas": [
+    "Energi och innovation"
+   ],
+   "title": "Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "andreas.lundqvist@foyen.se": {
+   "name": "Andreas Lundqvist",
+   "offices": [
+    "Stockholm"
+   ],
+   "areas": [
+    "Entreprenadjuridik",
+    "Tvistlösning"
+   ],
+   "title": "Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "anton.enoksson@foyen.se": {
+   "name": "Anton Enoksson",
+   "offices": [
+    "Malmö"
+   ],
+   "areas": [
+    "Energi och innovation"
+   ],
+   "title": "Biträdande jurist",
+   "excluded": false,
+   "note": ""
+  },
+  "jonas.conradsson@foyen.se": {
+   "name": "Jonas Conradsson",
+   "offices": [
+    "Stockholm"
+   ],
+   "areas": [
+    "Energi och innovation"
+   ],
+   "title": "Partner, Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "bjorn.eriksson@foyen.se": {
+   "name": "Björn Eriksson",
+   "offices": [
+    "Göteborg"
+   ],
+   "areas": [
+    "Mark och miljö"
+   ],
+   "title": "Biträdande jurist",
+   "excluded": false,
+   "note": ""
+  },
+  "elin.thomsen@foyen.se": {
+   "name": "Elin Thomsen",
+   "offices": [
+    "Stockholm"
+   ],
+   "areas": [],
+   "title": "Event och marknadskoordinator",
+   "excluded": false,
+   "note": ""
+  },
+  "johanna.lenell@foyen.se": {
+   "name": "Johanna Lenell",
+   "offices": [
+    "Göteborg"
+   ],
+   "areas": [
+    "Energi och innovation",
+    "Fastighetsrätt",
+    "Mark och miljö"
+   ],
+   "title": "Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "madeleine.jonsson@foyen.se": {
+   "name": "Madeleine Jönsson",
+   "offices": [
+    "Stockholm"
+   ],
+   "areas": [
+    "Energi och innovation",
+    "Fastighetsrätt"
+   ],
+   "title": "Partner, Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "moa.gruneau@foyen.se": {
+   "name": "Moa Gruneau",
+   "offices": [
+    "Stockholm"
+   ],
+   "areas": [
+    "Mark och miljö",
+    "Tvistlösning"
+   ],
+   "title": "Advokat / Föräldraledig",
+   "excluded": false,
+   "note": ""
+  },
+  "tomas.fjordevik@foyen.se": {
+   "name": "Tomas Fjordevik",
+   "offices": [
+    "Stockholm"
+   ],
+   "areas": [
+    "Energi och innovation",
+    "Mark och miljö",
+    "Tvistlösning"
+   ],
+   "title": "Partner, Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "alexandra.lindberg@foyen.se": {
+   "name": "Alexandra Lindberg",
+   "offices": [
+    "Stockholm"
+   ],
+   "areas": [
+    "Entreprenadjuridik",
+    "Offentliga affärer",
+    "Tvistlösning"
+   ],
+   "title": "Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "studentpool.malmo@foyen.se": {
+   "name": "Studentpool Malmö",
+   "offices": [
+    "Malmö"
+   ],
+   "areas": [],
+   "title": "",
+   "excluded": true,
+   "note": "Delat konto"
+  },
+  "albin.lager@foyen.se": {
+   "name": "Albin Lager",
+   "offices": [],
+   "areas": [],
+   "title": "",
+   "excluded": false,
+   "note": ""
+  },
+  "hampus.nilsson@foyen.se": {
+   "name": "Hampus Nilsson",
+   "offices": [
+    "Stockholm"
+   ],
+   "areas": [
+    "Entreprenadjuridik",
+    "Tvistlösning"
+   ],
+   "title": "Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "pernilla.samuelsson@foyen.se": {
+   "name": "Pernilla Samuelsson",
+   "offices": [
+    "Malmö"
+   ],
+   "areas": [
+    "Entreprenadjuridik",
+    "Offentliga affärer",
+    "Energi och innovation"
+   ],
+   "title": "Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "helena.strombeck@foyen.se": {
+   "name": "Helena Strömbeck",
+   "offices": [
+    "Malmö"
+   ],
+   "areas": [
+    "Energi och innovation",
+    "Entreprenadjuridik",
+    "Fastighetsrätt",
+    "Tvistlösning"
+   ],
+   "title": "Partner, Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "henrik.beijerolsen@foyen.se": {
+   "name": "Henrik Beijer-Olsen",
+   "offices": [
+    "Malmö"
+   ],
+   "areas": [],
+   "title": "Head of People & Performance",
+   "excluded": false,
+   "note": ""
+  },
+  "maria.fahlcrantz@foyen.se": {
+   "name": "Maria Fahlcrantz",
+   "offices": [
+    "Stockholm"
+   ],
+   "areas": [
+    "Entreprenadjuridik",
+    "Tvistlösning"
+   ],
+   "title": "Partner, Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "sandra.simonsson@foyen.se": {
+   "name": "Sandra Simonsson",
+   "offices": [
+    "Malmö"
+   ],
+   "areas": [],
+   "title": "Kontorsassistent",
+   "excluded": false,
+   "note": ""
+  },
+  "marcus.eidem@foyen.se": {
+   "name": "Marcus Eidem",
+   "offices": [
+    "Stockholm"
+   ],
+   "areas": [
+    "Entreprenadjuridik",
+    "Fastighetsrätt",
+    "Tvistlösning"
+   ],
+   "title": "Partner, Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "alexander.diezgranath@foyen.se": {
+   "name": "Alexander Diez Granath",
+   "offices": [
+    "Stockholm"
+   ],
+   "areas": [
+    "Tvistlösning",
+    "Entreprenadjuridik"
+   ],
+   "title": "Biträdande jurist",
+   "excluded": false,
+   "note": ""
+  },
+  "emma.gustafsson@foyen.se": {
+   "name": "Emma Gustafsson",
+   "offices": [
+    "Malmö"
+   ],
+   "areas": [
+    "Entreprenadjuridik",
+    "Fastighetsrätt",
+    "Tvistlösning"
+   ],
+   "title": "Partner, Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "henrik.stahlberg@foyen.se": {
+   "name": "Henrik Ståhlberg",
+   "offices": [
+    "Stockholm"
+   ],
+   "areas": [
+    "Fastighetsrätt"
+   ],
+   "title": "Partner, Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "mans.karlsson@foyen.se": {
+   "name": "Måns Karlsson",
+   "offices": [
+    "Stockholm"
+   ],
+   "areas": [
+    "Fastighetsrätt",
+    "Tvistlösning"
+   ],
+   "title": "Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "elin.holzhausen@foyen.se": {
+   "name": "Elin Holzhausen",
+   "offices": [
+    "Stockholm"
+   ],
+   "areas": [
+    "Mark och miljö"
+   ],
+   "title": "Biträdande jurist",
+   "excluded": false,
+   "note": ""
+  },
+  "sarali.olovsson@foyen.se": {
+   "name": "Sara-Li Olovsson",
+   "offices": [
+    "Stockholm"
+   ],
+   "areas": [
+    "Offentliga affärer"
+   ],
+   "title": "Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "johanna.stahlberg@foyen.se": {
+   "name": "Johanna Ståhlberg",
+   "offices": [
+    "Stockholm"
+   ],
+   "areas": [
+    "Fastighetsrätt"
+   ],
+   "title": "Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "joel.ohrn@foyen.se": {
+   "name": "Joel Öhrn",
+   "offices": [
+    "Stockholm"
+   ],
+   "areas": [
+    "Fastighetsrätt"
+   ],
+   "title": "Biträdande jurist",
+   "excluded": false,
+   "note": ""
+  },
+  "josefin.falck@foyen.se": {
+   "name": "Josefin Falck",
+   "offices": [
+    "Stockholm"
+   ],
+   "areas": [],
+   "title": "Head of Brand & Communications",
+   "excluded": false,
+   "note": ""
+  },
+  "studentpool.goteborg@foyen.se": {
+   "name": "Studentpool Göteborg",
+   "offices": [
+    "Göteborg"
+   ],
+   "areas": [],
+   "title": "",
+   "excluded": true,
+   "note": "Delat konto"
+  },
+  "angelica.brobeck@foyen.se": {
+   "name": "Angelica Brobeck",
+   "offices": [
+    "Stockholm"
+   ],
+   "areas": [],
+   "title": "Kontorsassistent",
+   "excluded": false,
+   "note": ""
+  },
+  "elin.bystrom@foyen.se": {
+   "name": "Elin Byström",
+   "offices": [
+    "Stockholm"
+   ],
+   "areas": [
+    "Fastighetsrätt"
+   ],
+   "title": "Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "johan.bogren@foyen.se": {
+   "name": "Johan",
+   "offices": [],
+   "areas": [],
+   "title": "",
+   "excluded": false,
+   "note": ""
+  },
+  "johan.bengtsson@foyen.se": {
+   "name": "Johan Bengtsson",
+   "offices": [
+    "Stockholm"
+   ],
+   "areas": [
+    "Entreprenadjuridik",
+    "Tvistlösning"
+   ],
+   "title": "Partner, Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "pia.pehrson@foyen.se": {
+   "name": "Pia Pehrson",
+   "offices": [
+    "Göteborg",
+    "Stockholm"
+   ],
+   "areas": [
+    "Energi och innovation",
+    "Mark och miljö"
+   ],
+   "title": "Partner, Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "michelle.jansson@foyen.se": {
+   "name": "Michelle Jansson",
+   "offices": [
+    "Stockholm"
+   ],
+   "areas": [
+    "Mark och miljö"
+   ],
+   "title": "Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "studentpool.stockholm@foyen.se": {
+   "name": "Studentpool Stockholm",
+   "offices": [
+    "Stockholm"
+   ],
+   "areas": [],
+   "title": "",
+   "excluded": true,
+   "note": "Delat konto"
+  },
+  "maria.wallenborgekdahl@foyen.se": {
+   "name": "Maria Wallenborg Ekdahl",
+   "offices": [
+    "Stockholm"
+   ],
+   "areas": [],
+   "title": "VD",
+   "excluded": false,
+   "note": ""
+  },
+  "rickard.zamuhl@foyen.se": {
+   "name": "Rickard Zamuhl",
+   "offices": [
+    "Stockholm"
+   ],
+   "areas": [
+    "Fastighetsrätt"
+   ],
+   "title": "Partner, Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "richard.sahlberg@foyen.se": {
+   "name": "Richard Sahlberg",
+   "offices": [
+    "Malmö"
+   ],
+   "areas": [
+    "Energi och innovation",
+    "Entreprenadjuridik",
+    "Tvistlösning"
+   ],
+   "title": "Partner, Advokat",
+   "excluded": true,
+   "note": "Admin"
+  },
+  "fanny.olsen@foyen.se": {
+   "name": "Fanny Olsen Lombach",
+   "offices": [
+    "Stockholm"
+   ],
+   "areas": [
+    "Entreprenadjuridik",
+    "Offentliga affärer",
+    "Tvistlösning"
+   ],
+   "title": "Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "sanna.holm@foyen.se": {
+   "name": "Sanna Holm",
+   "offices": [
+    "Stockholm"
+   ],
+   "areas": [],
+   "title": "Kontorsassistent",
+   "excluded": false,
+   "note": ""
+  },
+  "anna.grabow@foyen.se": {
+   "name": "Anna Grabow",
+   "offices": [
+    "Malmö"
+   ],
+   "areas": [],
+   "title": "HR Generalist",
+   "excluded": false,
+   "note": ""
+  },
+  "anna.lysell@foyen.se": {
+   "name": "Anna Lysell",
+   "offices": [
+    "Göteborg"
+   ],
+   "areas": [],
+   "title": "Ekonomichef",
+   "excluded": false,
+   "note": ""
+  },
+  "soleya.armanu@foyen.se": {
+   "name": "Soleya Armanu",
+   "offices": [
+    "Malmö"
+   ],
+   "areas": [],
+   "title": "CRM- och Eventkoordinator / Föräldraledig",
+   "excluded": false,
+   "note": ""
+  },
+  "madelon.sundqvist@foyen.se": {
+   "name": "Madelon Sundqvist",
+   "offices": [
+    "Stockholm"
+   ],
+   "areas": [],
+   "title": "Juristassistent",
+   "excluded": false,
+   "note": ""
+  },
+  "helena.dahlberg@foyen.se": {
+   "name": "Helena Dahlberg",
+   "offices": [
+    "Stockholm"
+   ],
+   "areas": [
+    "Entreprenadjuridik",
+    "Offentliga affärer",
+    "Tvistlösning"
+   ],
+   "title": "Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "lars.hag@foyen.se": {
+   "name": "Lars Hag",
+   "offices": [
+    "Stockholm"
+   ],
+   "areas": [
+    "Entreprenadjuridik",
+    "Tvistlösning"
+   ],
+   "title": "Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "joel.eriksson@foyen.se": {
+   "name": "Joel Eriksson",
+   "offices": [
+    "Malmö"
+   ],
+   "areas": [
+    "Entreprenadjuridik",
+    "Tvistlösning"
+   ],
+   "title": "Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "jacob.eldh@foyen.se": {
+   "name": "Jacob",
+   "offices": [],
+   "areas": [],
+   "title": "",
+   "excluded": false,
+   "note": ""
+  },
+  "john.hane@foyen.se": {
+   "name": "John Hane",
+   "offices": [
+    "Stockholm"
+   ],
+   "areas": [
+    "Entreprenadjuridik",
+    "Offentliga affärer",
+    "Tvistlösning"
+   ],
+   "title": "Partner, Advokat",
+   "excluded": false,
+   "note": ""
+  },
+  "jonatan.holm@foyen.se": {
+   "name": "Jonatan Holm",
+   "offices": [
+    "Stockholm"
+   ],
+   "areas": [
+    "Fastighetsrätt"
+   ],
+   "title": "Advokat / Föräldraledig",
+   "excluded": false,
+   "note": ""
+  },
+  "alma.kornblad@foyen.se": {
+   "name": "Alma",
+   "offices": [],
+   "areas": [],
+   "title": "",
+   "excluded": false,
+   "note": ""
+  },
+  "camilla.canova@foyen.se": {
+   "name": "Camilla Canova",
+   "offices": [
+    "Göteborg"
+   ],
+   "areas": [],
+   "title": "Redovisningsekonom",
+   "excluded": false,
+   "note": ""
+  },
+  "maria.kinana@foyen.se": {
+   "name": "Maria Kinana",
+   "offices": [],
+   "areas": [],
+   "title": "",
+   "excluded": false,
+   "note": ""
+  },
+  "maria.pohjanen@foyen.se": {
+   "name": "Maria",
+   "offices": [],
+   "areas": [],
+   "title": "",
+   "excluded": false,
+   "note": ""
+  },
+  "anette.fognas@foyen.se": {
+   "name": "Anette Fognäs",
+   "offices": [
+    "Göteborg"
+   ],
+   "areas": [],
+   "title": "Sekreterare",
+   "excluded": false,
+   "note": ""
+  },
+  "tintin.lonnberg@foyen.se": {
+   "name": "Tintin Lönnberg",
+   "offices": [
+    "Stockholm"
+   ],
+   "areas": [],
+   "title": "Marknadsassistent",
+   "excluded": false,
+   "note": ""
+  },
+  "louise.heyman@foyen.se": {
+   "name": "Louise Heyman Litsegård",
+   "offices": [
+    "Göteborg"
+   ],
+   "areas": [],
+   "title": "Kontorsassistent",
+   "excluded": false,
+   "note": ""
+  }
+ },
+ "updatedAt": "2026-09-10"
+}
