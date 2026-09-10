@@ -180,6 +180,25 @@ nav.tabs{display:flex;gap:22px;justify-content:flex-end;flex-wrap:wrap}
 .kpi svg path{fill:none;stroke:var(--brown);stroke-width:2}
 .kpi svg circle{fill:var(--brown)}
 @media (max-width:1000px){.kpis{grid-template-columns:1fr 1fr}.kpi{border-right:0;padding-left:0;padding-right:0}}
+.cols-chart text{fill:var(--muted);font-family:var(--sans);font-size:12px}
+.cols-chart .v{fill:var(--ink);font-size:15px;font-weight:500}
+.cols-chart .lbl{font-size:13px;font-weight:500;fill:var(--ink)}
+.movers-list{list-style:none;margin:0;padding:0}
+.movers-list li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--line)}
+.movers-list li:last-child{border-bottom:0}
+.movers-list b{font-weight:500;display:block}
+.movers-list span{font-size:12.5px;color:var(--muted)}
+.movers-list .gain{font-size:22px;font-weight:300;color:var(--green);white-space:nowrap}
+.movers-list .gain.neg{color:#DE1135}
+.deltas{display:grid;gap:0}
+.delta{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--line)}
+.delta:last-child{border-bottom:0}
+.delta .n{font-size:22px;font-weight:500}
+.delta .n i{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--oc);margin-right:10px}
+.delta .s{font-size:12.5px;color:var(--muted);margin-top:4px}
+.delta .d{font-size:clamp(28px,2.4vw,40px);font-weight:300;letter-spacing:-.03em}
+.delta .d.up{color:var(--green)}.delta .d.down{color:#DE1135}
+.delta .d small{display:block;font-size:12px;letter-spacing:.02em;color:var(--muted);text-align:right;font-weight:400}
 .rounds{display:grid}
 .round{display:grid;grid-template-columns:minmax(0,1.1fr) repeat(6,minmax(0,1fr));gap:24px;padding:26px 0 28px;border-bottom:1px solid var(--line);align-items:start}
 .round:last-child{border-bottom:0}
@@ -315,9 +334,19 @@ td.serif{font-weight:500;font-size:16px}
     <div class="sec">
             <div class="kpis" id="kpis"></div>
     </div>
-    <div class="sec">
-      <div class="caps sechead"><span>Kontorskampen över tid</span><small>Snitt AI-poäng per licens</small></div>
-      <div id="histChart"></div>
+    <div class="sec two">
+      <div>
+        <div class="caps sechead"><span>Hela firman över tid</span><small>AI-poäng per licens</small></div>
+        <div id="firmChart"></div>
+      </div>
+      <div>
+        <div class="caps sechead"><span>Kontoren över tid</span><small>AI-poäng per licens</small></div>
+        <div id="histChart"></div>
+      </div>
+    </div>
+    <div class="sec" id="moversSec">
+      <div class="caps sechead"><span>Störst framsteg</span><small>Jämfört med förra omgången</small></div>
+      <div class="two" id="movers"></div>
     </div>
     <div class="sec">
       <div class="caps sechead"><span>Hall of fame</span><small>Vinnare per omgång</small></div>
@@ -449,7 +478,7 @@ function compute(key){
 
   // awards
   const awards = [];
-  awards.push({t:"Månadens AI-stjärna", w: ranked[0], n: ranked[0]?fmt(ranked[0].pts):"", u:"AI-poäng", d: ranked[0] ? `${ranked[0].days} aktiva dagar · ${fmt(ranked[0].msgs)} meddelanden · ${ranked[0].projects} projekt` : ""});
+  awards.push({t:"Månadens AI-stjärna", w: ranked[0], n: ranked[0]?fmt(ranked[0].pts):"", u:"AI-poäng", d: ranked[0] ? `${ranked[0].days} aktiva dagar av ${daysIn(m)} · ${fmt(ranked[0].msgs)} meddelanden · ${ranked[0].projects} projekt` : ""});
   const taken = new Set(ranked[0]?[ranked[0].email]:[]); const fresh = r => r && !taken.has(r.email); const take = r => { if(r) taken.add(r.email); return r; };
   const stamina = take([...eligible].sort((a,b)=>b.days-a.days||b.pts-a.pts).find(fresh));
   awards.push({t:"Uthålligheten", w: stamina, n: stamina?String(stamina.days):"", u:`aktiva dagar av ${daysIn(m)}`, d: stamina ? `Flest dagar med Claude under omgången · ${fmt(stamina.pts)} poäng` : ""});
@@ -536,7 +565,7 @@ function renderNow(c){
 function renderHist(){
   const ks = monthKeys(); const cs = ks.map(compute);
   if(!cs.length){ $("#histChart").innerHTML = `<div class="empty">Historiken fylls på när fler månader laddas upp.</div>`; $("#firmTable").innerHTML=""; $("#hofTable").innerHTML=""; return; }
-  const W=1400,H=380,pl=48,pr=140,pt=24,pb=40; const iw=W-pl-pr, ih=H-pt-pb;
+  const W=760,H=330,pl=44,pr=120,pt=20,pb=36; const iw=W-pl-pr, ih=H-pt-pb;
   const allVals = cs.flatMap(c=>c.offices.map(o=>o.avg)); const maxV = Math.max(...allVals,10)*1.12;
   const x = i => pl + (cs.length===1 ? iw/2 : i*iw/(cs.length-1)); const y = v => pt + ih - v/maxV*ih;
   const ticks = 4; let grid=""; for(let t=1;t<=ticks;t++){ const v=maxV*t/ticks; grid += `<line x1="${pl}" x2="${W-pr}" y1="${y(v)}" y2="${y(v)}"/><text x="${pl-10}" y="${y(v)+4}" text-anchor="end">${fmt(v)}</text>`; }
@@ -559,6 +588,24 @@ function renderHist(){
     kpi("Andel aktiva", pct(last.firm.active,last.firm.count), prev?pct(prev.firm.active,prev.firm.count):null, "använde Claude minst en dag", cs.map(c=>pct(c.firm.active,c.firm.count)), " %") +
     kpi("Regelbundna", pct(last.firm.regular,last.firm.count), prev?pct(prev.firm.regular,prev.firm.count):null, "använde Claude tio dagar eller fler", cs.map(c=>pct(c.firm.regular,c.firm.count)), " %") +
     kpi("Meddelanden", fmt(last.firm.msgs), prev?prev.firm.msgs:null, `${fmt(last.firm.chat)} i chatten · ${fmt(last.firm.cowork)} i Cowork`, cs.map(c=>c.firm.msgs));
+  // firm columns
+  { const W=700,H=300,pl=10,pr=10,pt=40,pb=40; const iw=W-pl-pr, ih=H-pt-pb; const n=cs.length; const slot=iw/Math.max(n,3); const bw=Math.min(slot*0.62,140);
+    const mx=Math.max(...cs.map(c=>c.firm.avg),10)*1.1;
+    const bars=cs.map((c,i)=>{ const h=c.firm.avg/mx*ih; const x=pl+slot*i+(slot-bw)/2; const y=pt+ih-h; const lastI=i===n-1;
+      const dv = i>0 ? c.firm.avg-cs[i-1].firm.avg : null;
+      return `<rect x="${x}" y="${y}" width="${bw}" height="${h}" fill="${lastI?"var(--green)":"var(--brown)"}" opacity="${lastI?1:.55}"/><text class="v" x="${x+bw/2}" y="${y-10}" text-anchor="middle">${fmt(c.firm.avg)}${dv!=null?` <tspan style="font-size:11px;fill:${dv>=0?"var(--green)":"#DE1135"}">${dv>=0?"▲":"▼"}${fmt(Math.abs(dv))}</tspan>`:""}</text><text class="lbl" x="${x+bw/2}" y="${H-14}" text-anchor="middle">${esc(c.month.label.split(" ")[0])}</text>`; }).join("");
+    $("#firmChart").innerHTML = `<svg class="chart cols-chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="AI-poäng per licens, hela firman, per omgång"><line class="axis" x1="${pl}" x2="${W-pr}" y1="${pt+ih}" y2="${pt+ih}" stroke="var(--line-strong)"/>${bars}</svg>` + (n<2?`<p class="note" style="margin-top:10px">Nästa stapel kommer med nästa omgång – då syns förändringen direkt.</p>`:""); }
+  // movers
+  if(prev){
+    const pb=Object.fromEntries(prev.rows.map(r=>[r.email,r]));
+    const gains=last.eligible.map(r=>({r, g:r.pts-(pb[r.email]?.pts||0), had:!!pb[r.email]})).sort((a,b)=>b.g-a.g);
+    const up=gains.filter(x=>x.g>0).slice(0,8);
+    const offD=last.offices.map(o=>{ const p=prev.offices.find(z=>z.name===o.name); return {o, d: p? o.avg-p.avg : null, pAct: p?pct(p.active,p.count):null}; });
+    $("#movers").innerHTML = `
+      <div><div class="colhead">Personer som ökat mest</div><ol class="movers-list">${up.map(x=>`<li><div><b>${esc(x.r.name)}</b><span>${esc(x.r.offices.join("/"))}${x.r.areas[0]?" · "+esc(x.r.areas[0]):""} · ${fmt((pb[x.r.email]?.pts)||0)} → ${fmt(x.r.pts)} poäng</span></div><span class="gain num">+${fmt(x.g)}</span></li>`).join("")||`<li><span>Ingen ökade den här omgången.</span></li>`}</ol></div>
+      <div><div class="colhead">Kontoren</div><div class="deltas">${offD.map(x=>`<div class="delta" style="--oc:${OFFICE_VAR[x.o.name]}"><div><div class="n"><i></i>${esc(x.o.name)}</div><div class="s">${fmt(x.o.avg)} poäng per licens · ${pct(x.o.active,x.o.count)} % aktiva${x.pAct!=null?` (förra omgången ${x.pAct} %)`:""}</div></div><div class="d num ${x.d>0?"up":x.d<0?"down":""}">${x.d==null?"–":(x.d>=0?"+":"−")+fmt(Math.abs(x.d))}<small>${x.d==null?"":`poäng per licens sedan ${esc(prev.month.label)}`}</small></div></div>`).join("")}</div></div>`;
+    $("#moversSec").hidden=false;
+  } else { $("#moversSec").hidden=true; }
   const cell=(t,v,s,cls="",oc="")=>`<div class="cell ${cls}" ${oc?`style="--oc:${oc}"`:""}><div class="caps">${esc(t)}</div><div class="cell-v">${oc?"<i></i>":""}${v}</div>${s?`<div class="cell-s">${esc(s)}</div>`:""}</div>`;
   $("#hofTable").innerHTML = `<div class="rounds">${[...cs].reverse().map(c=>{
     const aw = t => c.awards.find(z=>z.t===t);
