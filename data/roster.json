@@ -898,12 +898,12 @@
    "note": ""
   },
   "johan.bogren@foyen.se": {
-   "name": "Johan",
+   "name": "Johan Bogren",
    "offices": [],
    "areas": [],
    "title": "",
-   "excluded": false,
-   "note": ""
+   "excluded": true,
+   "note": "Har slutat"
   },
   "johan.bengtsson@foyen.se": {
    "name": "Johan Bengtsson",
@@ -1107,12 +1107,12 @@
    "note": ""
   },
   "jacob.eldh@foyen.se": {
-   "name": "Jacob",
+   "name": "Jacob Eldh",
    "offices": [],
    "areas": [],
    "title": "",
-   "excluded": false,
-   "note": ""
+   "excluded": true,
+   "note": "Har slutat"
   },
   "john.hane@foyen.se": {
    "name": "John Hane",
@@ -1141,12 +1141,12 @@
    "note": ""
   },
   "alma.kornblad@foyen.se": {
-   "name": "Alma",
+   "name": "Alma Kornblad",
    "offices": [],
    "areas": [],
    "title": "",
-   "excluded": false,
-   "note": ""
+   "excluded": true,
+   "note": "Har slutat"
   },
   "camilla.canova@foyen.se": {
    "name": "Camilla Canova",
@@ -1171,12 +1171,12 @@
    "note": ""
   },
   "maria.pohjanen@foyen.se": {
-   "name": "Maria",
+   "name": "Maria Pohjanen",
    "offices": [],
    "areas": [],
    "title": "",
-   "excluded": false,
-   "note": ""
+   "excluded": true,
+   "note": "Har slutat"
   },
   "anette.fognas@foyen.se": {
    "name": "Anette Fognäs",
