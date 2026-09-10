@@ -580,7 +580,9 @@ function renderRules(){
     w.wDay>0 && ["×"+w.wDay,"Aktiva dagar","Varje dag du använt Claude ger en rejäl bonus. Vanan slår sprinten: tjugo dagar à en fråga slår en dag med trehundra."],
     w.wProj>0 && ["×"+w.wProj,"Projekt","Att skapa ett projekt med egna instruktioner och material är ett tecken på att man börjat jobba på riktigt med verktyget."],
     w.wArt>0 && ["×"+w.wArt,"Artefakter","Dokument, verktyg och sidor som Claude byggt åt dig."],
-    ["Snitt","Kontor & områden","Kontorskampen och Områdesmästare avgörs på snitt per licens, så att små och stora kontor kan mötas på lika villkor."],
+    ["Snitt","Kontor & områden","Kontorskampen och Områdesmästare avgörs på snitt per licens – alla som har en Claude-plats räknas, även den som inte använt den. Så kan små och stora kontor mötas på lika villkor."],
+    ["1 dag","Aktiv","Man räknas som aktiv om man använt Claude minst en dag under omgången, i chatten eller i Cowork. Andelen aktiva visar hur många av kontorets licenser som alls kommit till användning."],
+    ["10 dagar","Regelbunden","Den som använt Claude tio dagar eller fler under omgången räknas som regelbunden användare – det är måttet på att verktyget blivit en vana."],
     ["Topp "+(w.topN||5),"Individuellt","Bara toppen visas. Utmärkelserna Uthålligheten, Projektbyggaren, Raketen och Nykomlingen ger fler chanser att vinna än bara total volym – och ingen tar mer än ett pris per månad."],
   ].filter(Boolean);
   $("#rulesCards").innerHTML = cards.map(([b,t,d])=>`<div class="rule"><div class="big">${esc(b)}</div><h3>${esc(t)}</h3><p>${esc(d)}</p></div>`).join("");
