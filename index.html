@@ -110,8 +110,8 @@ nav.tabs{display:flex;gap:26px;justify-content:flex-end}
 .lb .rel{grid-column:2/-1;height:2px;background:var(--line);margin-top:8px;position:relative}
 .lb .rel i{position:absolute;inset:0 auto 0 0;background:var(--faint)}
 /* etta */
-.lb li.first{grid-template-columns:minmax(0,1fr) auto;padding:18px 0 20px;border-bottom:1px solid var(--line-strong)}
-.lb li.first .pos{display:inline-block;background:var(--oc,var(--green));color:var(--bg);border-radius:999px;padding:4px 11px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
+.lb li.first{grid-template-columns:30px minmax(0,1fr) auto;padding:18px 0 20px;border-bottom:1px solid var(--line-strong)}
+.lb li.first .pos{font-size:clamp(24px,1.9vw,32px);font-weight:500;line-height:1.1;color:var(--oc,var(--green))}
 .lb li.first .who b{font-size:clamp(24px,1.9vw,32px);line-height:1.1;white-space:normal}
 .lb li.first .who span{font-size:13px;margin-top:4px}
 .lb li.first .pts{font-size:clamp(40px,3.4vw,56px);letter-spacing:-.03em;line-height:1;align-self:end}
@@ -443,7 +443,7 @@ function renderNow(c){
     <div style="--oc:${OFFICE_VAR[o.name]}">
       <div class="colhead">${esc(o.name)}</div>
       ${o.top.length ? `<ol class="lb">${o.top.slice(0,topN).map((r,i)=>{ const top=o.top[0].pts||1; return i===0 ? `
-        <li class="first"><span class="who"><b>${esc(r.name)}</b><span>${esc(r.title||"")}${r.title&&r.areas.length?" · ":""}${esc(r.areas[0]||"")}</span></span>
+        <li class="first"><span class="pos num">1</span><span class="who"><b>${esc(r.name)}</b><span>${esc(r.title||"")}${r.title&&r.areas.length?" · ":""}${esc(r.areas[0]||"")}</span></span>
         <span class="pts num">${fmt(r.pts)}${c.prevBy?trend(r.pts,c.prevBy[r.email]?.pts??0):""}</span></li>` : `
         <li><span class="pos num">${i+1}</span><span class="who"><b>${esc(r.name)}</b><span>${esc(r.title||"")}${r.title&&r.areas.length?" · ":""}${esc(r.areas[0]||"")}</span></span>
         <span class="pts num">${fmt(r.pts)}${c.prevBy?trend(r.pts,c.prevBy[r.email]?.pts??0):""}</span>
