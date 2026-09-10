@@ -80,15 +80,13 @@ nav.tabs{display:flex;gap:26px;justify-content:flex-end}
 
 /* kontorskampen */
 .cols>.office.leader{--ink:var(--green-ink);--muted:color-mix(in oklab,var(--green-ink) 72%,transparent);--faint:color-mix(in oklab,var(--green-ink) 55%,transparent);--line:color-mix(in oklab,var(--green-ink) 28%,transparent);background:var(--green);color:var(--green-ink);padding:24px 28px 28px;border-right:0;margin-top:-1px}
-.office.leader .rank .lead{background:var(--sage);color:#141414;border-radius:999px;padding:5px 12px}
+.office.leader .rank{color:var(--green-ink)}
 .office.leader h3{border-bottom-color:var(--green-ink)}
 .office.leader .meter i{background:var(--green-ink)}
 .office .margin{margin-top:14px;font-size:16px;font-weight:500}
 .office.leader .trend.up{color:var(--green-ink)}
 @media (max-width:1000px){.cols>.office.leader{margin-top:0}}
-.office .rank{display:flex;justify-content:space-between;align-items:baseline}
-.office .rank i{font-style:normal;color:var(--ink)}
-.office .rank .lead{color:var(--green);font-weight:500}
+.office .rank{font-size:clamp(28px,2.4vw,40px);font-weight:500;line-height:1;color:var(--oc)}
 .office h3{font-size:clamp(28px,2.4vw,40px);line-height:1.05;margin-top:12px;display:inline-block;padding-bottom:8px;border-bottom:3px solid var(--oc)}
 .office .big{font-weight:300;font-size:clamp(72px,8vw,132px);line-height:.9;letter-spacing:-.04em;margin-top:18px;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
 .office .big .trend{font-family:var(--sans);font-size:13px;letter-spacing:0}
@@ -429,7 +427,7 @@ function renderNow(c){
   const maxAvg = Math.max(...c.offices.map(o=>o.avg),1);
   $("#officeCards").innerHTML = c.offices.map((o,i)=>`
     <div class="office ${i===0?"leader":""}" style="--oc:${OFFICE_VAR[o.name]}">
-      <div class="rank caps"><span class="${i===0?"lead":""}">${i===0?"Leder kontorskampen":ORD[i]}</span></div>
+      <div class="rank num">${i+1}</div>
       <h3>${esc(o.name)}</h3>
       <div class="big num">${fmt(o.avg)} ${trend(o.avg,o.prevAvg)}</div>
       <div class="lbl">AI-poäng per licens i snitt</div>
