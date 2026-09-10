@@ -650,7 +650,9 @@
   },
   "albin.lager@foyen.se": {
    "name": "Albin Lager",
-   "offices": [],
+   "offices": [
+    "Stockholm"
+   ],
    "areas": [
     "Aktiemarknadsrätt"
    ],
@@ -1162,7 +1164,9 @@
   },
   "maria.kinana@foyen.se": {
    "name": "Maria Kinana",
-   "offices": [],
+   "offices": [
+    "Stockholm"
+   ],
    "areas": [
     "Affärsstöd"
    ],
