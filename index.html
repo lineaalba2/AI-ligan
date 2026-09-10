@@ -239,7 +239,7 @@ td.serif{font-weight:500;font-size:16px}
       </nav>
       <div class="tools">
         <select id="monthPick" aria-label="Välj månad"></select>
-        <button id="rotate" aria-pressed="false" title="Växlar vy automatiskt – för skärmen"><span class="dot"></span>Skärmläge</button>
+        <button id="rotate" aria-pressed="false" hidden><span class="dot"></span></button>
         <button id="openAdmin" title="Ny månad, poängvikter, deltagare">Administrera</button>
       </div>
     </div>
@@ -335,7 +335,7 @@ td.serif{font-weight:500;font-size:16px}
         <label class="field">Per projekt<input type="number" id="wProj" min="0"></label>
         <label class="field">Per artefakt (0 = räknas ej)<input type="number" id="wArt" min="0"></label>
         <label class="field">Topplista visar<input type="number" id="topN" min="3" max="10"></label>
-        <label class="field">Skärmläge byter var (sek)<input type="number" id="rotateSeconds" min="5"></label>
+        <input type="hidden" id="rotateSeconds">
       </div>
       <div class="row" style="margin-top:18px;align-items:center">
         <button class="primary" id="saveSettings">Prova vikterna</button> <button class="ghost" id="dlSettings">Ladda ner settings.json</button>
