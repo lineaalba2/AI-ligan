@@ -546,8 +546,10 @@ function periodFromName(name){
   const from = `${m[1]}-${m[2]}-${m[3]}`, to = `${m[4]}-${m[5]}-${m[6]}`;
   const f=new Date(from), t=new Date(to);
   const per = `${f.getDate()} ${SV_MONTHS[f.getMonth()].slice(0,3)} – ${t.getDate()} ${SV_MONTHS[t.getMonth()].slice(0,3)} ${t.getFullYear()}`;
-  const label = SV_MONTHS[t.getMonth()][0].toUpperCase()+SV_MONTHS[t.getMonth()].slice(1)+" "+t.getFullYear();
-  return {from,to,key:`${m[4]}-${m[5]}`,label,per};
+  // Omgången får namn efter månaden då den redovisas, dvs. dagen efter periodens slut
+  const n=new Date(t); n.setDate(n.getDate()+1);
+  const label = SV_MONTHS[n.getMonth()][0].toUpperCase()+SV_MONTHS[n.getMonth()].slice(1)+" "+n.getFullYear();
+  return {from,to,key:`${n.getFullYear()}-${String(n.getMonth()+1).padStart(2,"0")}`,label,per};
 }
 async function handleFile(file){
   const st=$("#uploadStatus"); st.className="status";
