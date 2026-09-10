@@ -313,7 +313,9 @@
    "offices": [
     "Göteborg"
    ],
-   "areas": [],
+   "areas": [
+    "Affärsstöd"
+   ],
    "title": "Kontorsassistent",
    "excluded": false,
    "note": ""
@@ -323,7 +325,9 @@
    "offices": [
     "Malmö"
    ],
-   "areas": [],
+   "areas": [
+    "Affärsstöd"
+   ],
    "title": "Kontorsassistent",
    "excluded": false,
    "note": ""
@@ -559,7 +563,9 @@
    "offices": [
     "Stockholm"
    ],
-   "areas": [],
+   "areas": [
+    "Affärsstöd"
+   ],
    "title": "Event och marknadskoordinator",
    "excluded": false,
    "note": ""
@@ -697,7 +703,9 @@
    "offices": [
     "Malmö"
    ],
-   "areas": [],
+   "areas": [
+    "Affärsstöd"
+   ],
    "title": "Head of People & Performance",
    "excluded": false,
    "note": ""
@@ -720,7 +728,9 @@
    "offices": [
     "Malmö"
    ],
-   "areas": [],
+   "areas": [
+    "Affärsstöd"
+   ],
    "title": "Kontorsassistent",
    "excluded": false,
    "note": ""
@@ -844,7 +854,9 @@
    "offices": [
     "Stockholm"
    ],
-   "areas": [],
+   "areas": [
+    "Affärsstöd"
+   ],
    "title": "Head of Brand & Communications",
    "excluded": false,
    "note": ""
@@ -864,7 +876,9 @@
    "offices": [
     "Stockholm"
    ],
-   "areas": [],
+   "areas": [
+    "Affärsstöd"
+   ],
    "title": "Kontorsassistent",
    "excluded": false,
    "note": ""
@@ -943,7 +957,9 @@
    "offices": [
     "Stockholm"
    ],
-   "areas": [],
+   "areas": [
+    "Affärsstöd"
+   ],
    "title": "VD",
    "excluded": false,
    "note": ""
@@ -993,7 +1009,9 @@
    "offices": [
     "Stockholm"
    ],
-   "areas": [],
+   "areas": [
+    "Affärsstöd"
+   ],
    "title": "Kontorsassistent",
    "excluded": false,
    "note": ""
@@ -1003,7 +1021,9 @@
    "offices": [
     "Malmö"
    ],
-   "areas": [],
+   "areas": [
+    "Affärsstöd"
+   ],
    "title": "HR Generalist",
    "excluded": false,
    "note": ""
@@ -1013,7 +1033,9 @@
    "offices": [
     "Göteborg"
    ],
-   "areas": [],
+   "areas": [
+    "Affärsstöd"
+   ],
    "title": "Ekonomichef",
    "excluded": false,
    "note": ""
@@ -1023,7 +1045,9 @@
    "offices": [
     "Malmö"
    ],
-   "areas": [],
+   "areas": [
+    "Affärsstöd"
+   ],
    "title": "CRM- och Eventkoordinator / Föräldraledig",
    "excluded": false,
    "note": ""
@@ -1033,7 +1057,9 @@
    "offices": [
     "Stockholm"
    ],
-   "areas": [],
+   "areas": [
+    "Affärsstöd"
+   ],
    "title": "Juristassistent",
    "excluded": false,
    "note": ""
@@ -1125,7 +1151,9 @@
    "offices": [
     "Göteborg"
    ],
-   "areas": [],
+   "areas": [
+    "Affärsstöd"
+   ],
    "title": "Redovisningsekonom",
    "excluded": false,
    "note": ""
@@ -1151,7 +1179,9 @@
    "offices": [
     "Göteborg"
    ],
-   "areas": [],
+   "areas": [
+    "Affärsstöd"
+   ],
    "title": "Sekreterare",
    "excluded": false,
    "note": ""
@@ -1161,7 +1191,9 @@
    "offices": [
     "Stockholm"
    ],
-   "areas": [],
+   "areas": [
+    "Affärsstöd"
+   ],
    "title": "Marknadsassistent",
    "excluded": false,
    "note": ""
@@ -1171,7 +1203,9 @@
    "offices": [
     "Göteborg"
    ],
-   "areas": [],
+   "areas": [
+    "Affärsstöd"
+   ],
    "title": "Kontorsassistent",
    "excluded": false,
    "note": ""
