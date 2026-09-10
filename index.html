@@ -70,6 +70,7 @@ nav.tabs{display:flex;gap:22px;justify-content:flex-end;flex-wrap:wrap}
 /* sections */
 .sec{padding-top:20px;margin-top:34px}
 .sechead{display:flex;justify-content:space-between;gap:16px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.sechead--bare{padding-bottom:0}
 .sechead small{letter-spacing:0;text-transform:none;font-size:12.5px;font-weight:400;color:var(--faint)}
 .cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
 .cols>*{padding:22px 28px 26px;border-right:1px solid var(--line)}
@@ -246,28 +247,28 @@ td.serif{font-weight:500;font-size:16px}
 
   <section class="view" id="view-now">
     <div class="sec">
-      <div class="caps sechead"><span>Kontorskampen</span></div>
+      <div class="sechead sechead--bare"></div>
       <div class="cols" id="officeCards"></div>
     </div>
   </section>
 
   <section class="view" id="view-top" hidden>
     <div class="sec">
-      <div class="caps sechead"><span>Topplistor</span><small id="topNote" hidden></small></div>
+      <div class="sechead sechead--bare"></div>
       <div class="cols" id="officeBoards"></div>
     </div>
   </section>
 
   <section class="view" id="view-areas" hidden>
     <div class="sec">
-      <div class="caps sechead"><span>Områdesmästare</span><small>Snitt AI-poäng per person i området</small></div>
+      <div class="sechead sechead--bare"></div>
       <div class="bars bars--wide" id="areaBars"></div>
     </div>
   </section>
 
   <section class="view" id="view-awards" hidden>
     <div class="sec">
-      <div class="caps sechead"><span>Utmärkelser</span><small>Ett pris per person och omgång</small></div>
+      <div class="sechead sechead--bare"></div>
       <div class="awards awards--wide" id="awards"></div>
     </div>
   </section>
@@ -291,7 +292,7 @@ td.serif{font-weight:500;font-size:16px}
 
   <section class="view" id="view-rules" hidden>
     <div class="sec">
-      <div class="caps sechead"><span>Poängen</span></div>
+      <div class="sechead sechead--bare"></div>
       <div class="formula" id="formula"></div>
       <div class="rules" id="rulesCards"></div>
       <p class="note">Kontor och områden tävlar på snitt per licens – alla som har en Claude-plats räknas, även den som inte använt den. Det lönar sig alltså att hjälpa en kollega igång. Individuella listor visar bara toppen. Administratörer och delade konton står utanför prisjakten.</p>
@@ -462,7 +463,7 @@ function renderNow(c){
       <div class="facts"><span><b class="num">${pct(o.active,o.count)} %</b> aktiva</span><span><b class="num">${pct(o.regular,o.count)} %</b> använde Claude tio dagar eller fler</span></div>
     </div>`).join("");
   const topN = state.settings.topN || 5;
-  $("#topNote").textContent = `Topp ${topN} per kontor · AI-poäng`;
+  
   $("#officeBoards").innerHTML = c.offices.map(o=>`
     <div style="--oc:${OFFICE_VAR[o.name]}">
       <div class="colhead">${esc(o.name)}</div>
