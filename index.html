@@ -273,7 +273,7 @@ tr:last-child td{border-bottom:0}
         <label class="field">Per meddelande<input type="number" id="wMsg" min="0" step="0.5"></label>
         <label class="field">Per aktiv dag<input type="number" id="wDay" min="0"></label>
         <label class="field">Per projekt<input type="number" id="wProj" min="0"></label>
-        <label class="field">Per artefakt<input type="number" id="wArt" min="0"></label>
+        <label class="field">Per artefakt (0 = räknas ej)<input type="number" id="wArt" min="0"></label>
         <label class="field">Topplista visar<input type="number" id="topN" min="3" max="10"></label>
         <label class="field">Skärmläge byter vy var (sek)<input type="number" id="rotateSeconds" min="5"></label>
       </div>
@@ -304,7 +304,7 @@ const OFFICES = ["Stockholm","Göteborg","Malmö"];
 const OFFICE_VAR = {"Stockholm":"var(--sthlm)","Göteborg":"var(--gbg)","Malmö":"var(--malmo)"};
 const AREAS = ["Energi och innovation","Entreprenadjuridik","Fastighetsrätt","Mark och miljö","Offentliga affärer","Tvistlösning"];
 const SV_MONTHS = ["januari","februari","mars","april","maj","juni","juli","augusti","september","oktober","november","december"];
-const DEFAULT_SETTINGS = {wMsg:1,wDay:20,wProj:25,wArt:25,topN:5,rotateSeconds:20};
+const DEFAULT_SETTINGS = {wMsg:1,wDay:20,wProj:25,wArt:0,topN:5,rotateSeconds:20};
 
 const state = { roster: null, months: {}, settings: {...DEFAULT_SETTINGS}, db: null, view: "now", monthKey: null, pendingUpload: null };
 const $ = (s, el=document) => el.querySelector(s);
@@ -334,8 +334,9 @@ function compute(key){
     const total = rs.reduce((s,r)=>s+r.pts,0);
     const active = rs.filter(r=>r.days>0).length;
     const regular = rs.filter(r=>r.days>=10).length;
+    const chat = rs.reduce((s,r)=>s+(r.chatMsgs||0),0), cowork = rs.reduce((s,r)=>s+(r.coworkMsgs||0),0);
     const prevAvg = prev ? prev.offices.find(x=>x.name===o)?.avg : null;
-    return {name:o, count:rs.length, total, avg: rs.length? total/rs.length : 0, active, regular, prevAvg, top: rs.sort((a,b)=>b.pts-a.pts||b.days-a.days)};
+    return {name:o, count:rs.length, total, avg: rs.length? total/rs.length : 0, active, regular, prevAvg, chat, cowork, top: rs.sort((a,b)=>b.pts-a.pts||b.days-a.days)};
   }).sort((a,b)=>b.avg-a.avg);
 
   const areas = AREAS.map(a => {
@@ -350,8 +351,8 @@ function compute(key){
   const taken = new Set(ranked[0]?[ranked[0].email]:[]); const fresh = r => r && !taken.has(r.email); const take = r => { if(r) taken.add(r.email); return r; };
   const stamina = take([...eligible].sort((a,b)=>b.days-a.days||b.pts-a.pts).find(fresh));
   awards.push({t:"Uthålligheten", w: stamina, d: stamina ? `${stamina.days} aktiva dagar av ${daysIn(m)}` : ""});
-  const builder = take([...eligible].sort((a,b)=>(b.projects+b.artifacts)-(a.projects+a.artifacts)||b.pts-a.pts).find(fresh));
-  awards.push({t:"Byggmästaren", w: builder && (builder.projects+builder.artifacts)>0 ? builder : null, d: builder ? `${builder.projects} projekt · ${builder.artifacts} artefakter` : "", pending:"Ingen byggde projekt eller artefakter"});
+  const builder = take([...eligible].sort((a,b)=>b.projects-a.projects||b.pts-a.pts).find(fresh));
+  awards.push({t:"Projektbyggaren", w: builder && builder.projects>0 ? builder : null, d: builder ? `${builder.projects} nya projekt med egna instruktioner` : "", pending:"Ingen skapade projekt den här månaden"});
   if(prevBy){
     const rocket = [...eligible].map(r=>({r, gain: r.pts - (prevBy[r.email]?.pts||0)})).sort((a,b)=>b.gain-a.gain).find(x=>fresh(x.r)); if(rocket) take(rocket.r);
     awards.push({t:"Raketen", w: rocket && rocket.gain>0 ? rocket.r : null, d: rocket ? `+${fmt(rocket.gain)} poäng sedan ${state.months[pk].label}` : "", pending:"Ingen ökade sedan förra månaden"});
@@ -361,7 +362,7 @@ function compute(key){
     awards.push({t:"Raketen", w:null, pending:"Delas ut från och med andra omgången – störst ökning mot förra månaden"});
     awards.push({t:"Nykomlingen", w:null, pending:"Delas ut från och med andra omgången – bäst av dem som var inaktiva förra månaden"});
   }
-  const firm = { count: eligible.length, avg: eligible.length ? eligible.reduce((s,r)=>s+r.pts,0)/eligible.length : 0, active: eligible.filter(r=>r.days>0).length, regular: eligible.filter(r=>r.days>=10).length, msgs: eligible.reduce((s,r)=>s+r.msgs,0) };
+  const firm = { count: eligible.length, avg: eligible.length ? eligible.reduce((s,r)=>s+r.pts,0)/eligible.length : 0, active: eligible.filter(r=>r.days>0).length, regular: eligible.filter(r=>r.days>=10).length, msgs: eligible.reduce((s,r)=>s+r.msgs,0), chat: eligible.reduce((s,r)=>s+(r.chatMsgs||0),0), cowork: eligible.reduce((s,r)=>s+(r.coworkMsgs||0),0), projects: eligible.reduce((s,r)=>s+r.projects,0) };
   return {key, month:m, rows, eligible, ranked, offices, areas, awards, firm, prev, prevBy};
 }
 function daysIn(m){ if(m.fromDate && m.toDate){ const d=(new Date(m.toDate)-new Date(m.fromDate))/864e5+1; if(d>0&&d<62) return Math.round(d);} return 30; }
@@ -385,7 +386,7 @@ function renderNow(c){
       <div class="big num">${fmt(o.avg)}</div>
       <div class="sub">snitt AI-poäng per licens ${trend(o.avg,o.prevAvg)}</div>
       <div class="meter"><i style="width:${(o.avg/maxAvg*100).toFixed(1)}%"></i></div>
-      <div class="kv"><div><b class="num">${o.count}</b> licenser</div><div><b class="num">${o.count?Math.round(o.active/o.count*100):0}%</b> aktiva</div><div><b class="num">${o.regular}</b> använde 10+ dagar</div></div>
+      <div class="kv"><div><b class="num">${o.count}</b> licenser</div><div><b class="num">${o.count?Math.round(o.active/o.count*100):0}%</b> aktiva</div><div><b class="num">${o.regular}</b> använde 10+ dagar</div><div title="Andel av meddelandena som skickats i Cowork"><b class="num">${(o.chat+o.cowork)?Math.round(o.cowork/(o.chat+o.cowork)*100):0}%</b> i Cowork</div></div>
     </div>`).join("");
   const topN = state.settings.topN || 5;
   $("#officeBoards").innerHTML = c.offices.map(o=>`
@@ -427,24 +428,26 @@ function renderHist(){
   }).join("");
   $("#histChart").innerHTML = `<svg class="chart" viewBox="0 0 ${W+40} ${H}" role="img" aria-label="Snitt AI-poäng per kontor och månad"><g class="grid">${grid}</g><line class="axis" x1="${pl}" x2="${W-pr}" y1="${pt+ih}" y2="${pt+ih}"/>${xl}${series}</svg>
     <div class="legend">${OFFICES.map(o=>`<span><i style="background:${OFFICE_VAR[o]}"></i>${esc(o)}</span>`).join("")}</div>`;
-  $("#firmTable").innerHTML = `<thead><tr><th>Månad</th><th>Snitt/licens</th><th>Aktiva</th><th>10+ dagar</th><th>Meddelanden</th></tr></thead><tbody>${[...cs].reverse().map(c=>`<tr><td><b>${esc(c.month.label)}</b><br><small style="color:var(--muted)">${esc(c.month.period||"")}</small></td><td class="num">${fmt(c.firm.avg)}</td><td class="num">${c.firm.active}/${c.firm.count}</td><td class="num">${c.firm.regular}</td><td class="num">${fmt(c.firm.msgs)}</td></tr>`).join("")}</tbody>`;
-  $("#hofTable").innerHTML = `<thead><tr><th>Månad</th><th>Kontorskampen</th><th>Stockholm</th><th>Göteborg</th><th>Malmö</th><th>Områdesmästare</th><th>Uthålligheten</th><th>Raketen</th></tr></thead><tbody>${[...cs].reverse().map(c=>{
+  $("#firmTable").innerHTML = `<thead><tr><th>Månad</th><th>Snitt/licens</th><th>Aktiva</th><th>10+ dagar</th><th>Chatt</th><th>Cowork</th><th>Projekt</th></tr></thead><tbody>${[...cs].reverse().map(c=>`<tr><td><b>${esc(c.month.label)}</b><br><small style="color:var(--muted)">${esc(c.month.period||"")}</small></td><td class="num">${fmt(c.firm.avg)}</td><td class="num">${c.firm.active}/${c.firm.count}</td><td class="num">${c.firm.regular}</td><td class="num">${fmt(c.firm.chat)}</td><td class="num">${fmt(c.firm.cowork)}</td><td class="num">${c.firm.projects}</td></tr>`).join("")}</tbody>`;
+  $("#hofTable").innerHTML = `<thead><tr><th>Månad</th><th>Kontorskampen</th><th>Stockholm</th><th>Göteborg</th><th>Malmö</th><th>Områdesmästare</th><th>Uthålligheten</th><th>Projektbyggaren</th><th>Raketen</th></tr></thead><tbody>${[...cs].reverse().map(c=>{
     const off = o => { const t=c.offices.find(z=>z.name===o)?.top[0]; return t?`${esc(t.name)}<br><small style="color:var(--muted)" class="num">${fmt(t.pts)} p</small>`:"–"; };
     const aw = t => { const a=c.awards.find(z=>z.t===t); return a?.w ? esc(a.w.name) : "–"; };
-    return `<tr><td><b>${esc(c.month.label)}</b></td><td><span class="chip" style="border-color:${OFFICE_VAR[c.offices[0].name]};color:${OFFICE_VAR[c.offices[0].name]}">${esc(c.offices[0].name)}</span></td><td>${off("Stockholm")}</td><td>${off("Göteborg")}</td><td>${off("Malmö")}</td><td>${c.areas[0]?esc(c.areas[0].name):"–"}</td><td>${aw("Uthålligheten")}</td><td>${aw("Raketen")}</td></tr>`;}).join("")}</tbody>`;
+    return `<tr><td><b>${esc(c.month.label)}</b></td><td><span class="chip" style="border-color:${OFFICE_VAR[c.offices[0].name]};color:${OFFICE_VAR[c.offices[0].name]}">${esc(c.offices[0].name)}</span></td><td>${off("Stockholm")}</td><td>${off("Göteborg")}</td><td>${off("Malmö")}</td><td>${c.areas[0]?esc(c.areas[0].name):"–"}</td><td>${aw("Uthålligheten")}</td><td>${aw("Projektbyggaren")}</td><td>${aw("Raketen")}</td></tr>`;}).join("")}</tbody>`;
 }
 
 function renderRules(){
   const w = state.settings;
-  $("#formula").innerHTML = `AI-poäng <span>=</span> meddelanden × ${w.wMsg} <span>+</span> aktiva dagar × ${w.wDay} <span>+</span> projekt × ${w.wProj} <span>+</span> artefakter × ${w.wArt}`;
-  $("#rulesCards").innerHTML = [
-    ["×"+w.wMsg,"Meddelanden","Varje meddelande i Claude eller Cowork ger poäng. Volym räknas – men det är inte allt."],
-    ["×"+w.wDay,"Aktiva dagar","Varje dag du använt Claude ger en rejäl bonus. Vanan slår sprinten: 20 dagar à en fråga slår en dag med 300."],
-    ["×"+w.wProj,"Projekt","Att skapa ett projekt med egna instruktioner och material är ett tecken på att man börjat jobba på riktigt med verktyget."],
-    ["×"+w.wArt,"Artefakter","Dokument, verktyg och sidor som Claude byggt åt dig. Belönar att man vågar gå längre än chatten."],
+  const terms = [["meddelanden",w.wMsg],["aktiva dagar",w.wDay],["projekt",w.wProj],["artefakter",w.wArt]].filter(x=>x[1]>0);
+  $("#formula").innerHTML = `AI-poäng <span>=</span> ` + terms.map(([n,v])=>`${n} × ${v}`).join(` <span>+</span> `);
+  const cards = [
+    w.wMsg>0 && ["×"+w.wMsg,"Meddelanden","Varje meddelande i Claude-chatten och i Cowork räknas lika. Volym räknas – men det är inte allt."],
+    w.wDay>0 && ["×"+w.wDay,"Aktiva dagar","Varje dag du använt Claude ger en rejäl bonus. Vanan slår sprinten: 20 dagar à en fråga slår en dag med 300."],
+    w.wProj>0 && ["×"+w.wProj,"Projekt","Att skapa ett projekt med egna instruktioner och material är ett tecken på att man börjat jobba på riktigt med verktyget."],
+    w.wArt>0 && ["×"+w.wArt,"Artefakter","Dokument, verktyg och sidor som Claude byggt åt dig."],
     ["Snitt","Kontor & områden","Kontorskampen och Områdesmästare avgörs på snitt per licens, så att små och stora kontor kan mötas på lika villkor."],
-    ["Topp "+(w.topN||5),"Individuellt","Bara toppen visas. Utmärkelserna Uthålligheten, Byggmästaren, Raketen och Nykomlingen ger fler chanser att vinna än bara total volym – och ingen tar mer än ett pris per månad."],
-  ].map(([b,t,d])=>`<div class="card rule"><div class="big">${esc(b)}</div><h3 style="margin-top:8px;font-size:17px">${esc(t)}</h3><p>${esc(d)}</p></div>`).join("");
+    ["Topp "+(w.topN||5),"Individuellt","Bara toppen visas. Utmärkelserna Uthålligheten, Projektbyggaren, Raketen och Nykomlingen ger fler chanser att vinna än bara total volym – och ingen tar mer än ett pris per månad."],
+  ].filter(Boolean);
+  $("#rulesCards").innerHTML = cards.map(([b,t,d])=>`<div class="card rule"><div class="big">${esc(b)}</div><h3 style="margin-top:8px;font-size:17px">${esc(t)}</h3><p>${esc(d)}</p></div>`).join("");
 }
 
 function renderAll(){
@@ -494,7 +497,7 @@ function parseCSV(text){
 }
 const num = v => { const n = parseInt(String(v).replace(/[^\d-]/g,""),10); return isNaN(n)?0:n; };
 function rowsFromCSV(recs){
-  return recs.filter(r=>r.Email).map(r=>({ email:r.Email.trim().toLowerCase(), days:num(r["Days Active"]), chats:num(r.Chats), msgs:num(r.Messages)+num(r["Cowork Messages"]), projects:num(r["Projects Created"]), artifacts:num(r["Artifacts Created"]), cowork:num(r["Cowork Sessions"]), lastActive:r["Last Active"]||"" , csvName:r.Name||"" }));
+  return recs.filter(r=>r.Email).map(r=>({ email:r.Email.trim().toLowerCase(), days:num(r["Days Active"]), chats:num(r.Chats), msgs:num(r.Messages)+num(r["Cowork Messages"]), chatMsgs:num(r.Messages), coworkMsgs:num(r["Cowork Messages"]), projects:num(r["Projects Created"]), artifacts:num(r["Artifacts Created"]), cowork:num(r["Cowork Sessions"]), lastActive:r["Last Active"]||"" , csvName:r.Name||"" }));
 }
 function periodFromName(name){
   const m = name.match(/(\d{4})(\d{2})(\d{2})to(\d{4})(\d{2})(\d{2})/); if(!m) return null;
@@ -539,7 +542,7 @@ $("#saveMonth").addEventListener("click", ()=>{
 function download(name, obj){ const a=document.createElement("a"); a.href=URL.createObjectURL(new Blob([JSON.stringify(obj,null,1)],{type:"application/json"})); a.download=name; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),1000); }
 
 $("#saveSettings").addEventListener("click", ()=>{
-  const s={}; for(const k of ["wMsg","wDay","wProj","wArt","topN","rotateSeconds"]) s[k]=parseFloat($("#"+k).value)||DEFAULT_SETTINGS[k];
+  const s={}; for(const k of ["wMsg","wDay","wProj","wArt","topN","rotateSeconds"]) s[k]=parseFloat($("#"+k).value)||0; if(!s.topN) s.topN=DEFAULT_SETTINGS.topN; if(!s.rotateSeconds) s.rotateSeconds=DEFAULT_SETTINGS.rotateSeconds;
   state.settings=s; renderAll(); if(rotTimer) setRotate(true);
   $("#settingsStatus").textContent="Vikterna används i den här vyn. Ladda ner settings.json för att göra dem permanenta."; $("#settingsStatus").className="status ok";
 });
