@@ -100,15 +100,22 @@ nav.tabs{display:flex;gap:26px;justify-content:flex-end}
 
 /* listor */
 .lb{list-style:none;margin:0;padding:0}
-.lb li{display:grid;grid-template-columns:26px minmax(0,1fr) auto;gap:14px;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--line)}
+.lb li{display:grid;grid-template-columns:30px minmax(0,1fr) auto;gap:14px;align-items:baseline;padding:12px 0 14px;border-bottom:1px solid var(--line);position:relative}
 .lb li:last-child{border-bottom:0}
-.lb .pos{font-size:14px;color:var(--faint)}
-.lb li:first-child .pos{color:var(--oc,var(--green))}
+.lb .pos{font-size:13px;color:var(--faint);font-weight:500}
 .lb .who b{font-weight:500;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.lb li:first-child .who b{font-size:19px;font-weight:500}
 .lb .who span{display:block;font-size:12.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .lb .pts{font-size:21px;font-weight:300;text-align:right;white-space:nowrap}
-.lb .pts .trend{display:block;font-family:var(--sans);font-size:11.5px;text-align:right}
+.lb .pts .trend{display:block;font-size:11.5px;text-align:right}
+.lb .rel{grid-column:2/-1;height:2px;background:var(--line);margin-top:8px;position:relative}
+.lb .rel i{position:absolute;inset:0 auto 0 0;background:var(--faint)}
+/* etta */
+.lb li.first{grid-template-columns:minmax(0,1fr) auto;padding:18px 0 20px;border-bottom:1px solid var(--line-strong)}
+.lb li.first .pos{display:inline-block;background:var(--oc,var(--green));color:var(--bg);border-radius:999px;padding:4px 11px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
+.lb li.first .who b{font-size:clamp(24px,1.9vw,32px);line-height:1.1;white-space:normal}
+.lb li.first .who span{font-size:13px;margin-top:4px}
+.lb li.first .pts{font-size:clamp(40px,3.4vw,56px);letter-spacing:-.03em;line-height:1;align-self:end}
+.lb li.first .rel{display:none}
 .trend{color:var(--muted);letter-spacing:.02em}
 .trend.up{color:var(--green)}.trend.down{color:#DE1135}
 .colhead{font-size:22px;font-weight:500;display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
@@ -435,9 +442,12 @@ function renderNow(c){
   $("#officeBoards").innerHTML = c.offices.map(o=>`
     <div style="--oc:${OFFICE_VAR[o.name]}">
       <div class="colhead">${esc(o.name)}</div>
-      ${o.top.length ? `<ol class="lb">${o.top.slice(0,topN).map((r,i)=>`
+      ${o.top.length ? `<ol class="lb">${o.top.slice(0,topN).map((r,i)=>{ const top=o.top[0].pts||1; return i===0 ? `
+        <li class="first"><span class="who"><span class="pos">Etta i ${esc(o.name)}</span><b>${esc(r.name)}</b><span>${esc(r.title||"")}${r.title&&r.areas.length?" · ":""}${esc(r.areas[0]||"")}</span></span>
+        <span class="pts num">${fmt(r.pts)}${c.prevBy?trend(r.pts,c.prevBy[r.email]?.pts??0):""}</span></li>` : `
         <li><span class="pos num">${i+1}</span><span class="who"><b>${esc(r.name)}</b><span>${esc(r.title||"")}${r.title&&r.areas.length?" · ":""}${esc(r.areas[0]||"")}</span></span>
-        <span class="pts num">${fmt(r.pts)}${c.prevBy?trend(r.pts,c.prevBy[r.email]?.pts??0):""}</span></li>`).join("")}</ol>` : `<div class="empty">Inga deltagare</div>`}
+        <span class="pts num">${fmt(r.pts)}${c.prevBy?trend(r.pts,c.prevBy[r.email]?.pts??0):""}</span>
+        <span class="rel"><i style="width:${(r.pts/top*100).toFixed(1)}%"></i></span></li>`;}).join("")}</ol>` : `<div class="empty">Inga deltagare</div>`}
     </div>`).join("");
   const maxA = Math.max(...c.areas.map(a=>a.avg),1);
   $("#areaBars").innerHTML = c.areas.map((a,i)=>`
