@@ -498,7 +498,7 @@ function renderNow(c){
       <div class="rank num">${i+1}</div>
       <h3>${esc(o.name)}</h3>
       <div class="big num">${fmt(o.avg)} ${trend(o.avg,o.prevAvg)}</div>
-      <div class="lbl">AI-poäng per licens i snitt</div>
+      <div class="lbl">AI-poäng/licens</div>
       <div class="meter"><i style="width:${(o.avg/maxAvg*100).toFixed(1)}%"></i></div>
       <div class="facts"><span><b class="num">${pct(o.active,o.count)} %</b> aktiva</span><span><b class="num">${pct(o.regular,o.count)} %</b> använde Claude tio dagar eller fler</span></div>
     </div>`).join("");
