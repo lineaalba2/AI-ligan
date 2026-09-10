@@ -6,289 +6,305 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Foyen AI-ligan</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
 <style>
 :root{
-  --bg:#F9F5EF; --card:#FFFFFF; --card2:#F2EDE4; --ink:#141414; --muted:#5F6B66; --line:rgba(20,20,20,.12);
-  --brand:#173F35; --brand-ink:#F9F5EF; --sage:#C3D9D7; --accent:#173F35; --gold:#B8862B; --silver:#8A9097; --bronze:#A5673F;
-  --sthlm:#1E8A64; --gbg:#3A78C2; --malmo:#C0641F; --none:#7A8480;
-  --shadow:0 1px 2px rgba(20,20,20,.06),0 8px 24px rgba(23,63,53,.08);
-  --display:"Outfit","Helvetica Neue",Arial,sans-serif; --body:"Instrument Sans","Helvetica Neue",Arial,sans-serif;
+  --bg:#F6F2EA; --ink:#17201C; --muted:#6E7672; --faint:#9AA19D; --line:rgba(23,32,28,.16); --line-strong:rgba(23,32,28,.5);
+  --green:#173F35; --green-ink:#F6F2EA; --wash:rgba(23,63,53,.06);
+  --sthlm:#1E8A64; --gbg:#3A78C2; --malmo:#C0641F;
+  --serif:"Instrument Serif","Iowan Old Style","Times New Roman",serif; --sans:"Instrument Sans","Helvetica Neue",Arial,sans-serif;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#141414; --card:#1E2320; --card2:#262C28; --ink:#F1EEE7; --muted:#9AA59F; --line:rgba(255,255,255,.12);
-    --brand:#C3D9D7; --brand-ink:#141414; --sage:#2E4A44; --accent:#C3D9D7; --gold:#E0B252; --silver:#B7BEC4; --bronze:#D08A5C;
-    --sthlm:#2FA97A; --gbg:#4F8EDC; --malmo:#CF7E2E; --none:#8C9692;
-    --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
+    --bg:#131614; --ink:#EDE9E0; --muted:#9BA39F; --faint:#6F7773; --line:rgba(237,233,224,.16); --line-strong:rgba(237,233,224,.55);
+    --green:#A9CFC6; --green-ink:#131614; --wash:rgba(169,207,198,.08);
+    --sthlm:#2FA97A; --gbg:#4F8EDC; --malmo:#CF7E2E;
   }
 }
 :root[data-theme="dark"]{
-  --bg:#141414; --card:#1E2320; --card2:#262C28; --ink:#F1EEE7; --muted:#9AA59F; --line:rgba(255,255,255,.12);
-  --brand:#C3D9D7; --brand-ink:#141414; --sage:#2E4A44; --accent:#C3D9D7; --gold:#E0B252; --silver:#B7BEC4; --bronze:#D08A5C;
-  --sthlm:#2FA97A; --gbg:#4F8EDC; --malmo:#CF7E2E; --none:#8C9692;
-  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
+  --bg:#131614; --ink:#EDE9E0; --muted:#9BA39F; --faint:#6F7773; --line:rgba(237,233,224,.16); --line-strong:rgba(237,233,224,.55);
+  --green:#A9CFC6; --green-ink:#131614; --wash:rgba(169,207,198,.08);
+  --sthlm:#2FA97A; --gbg:#4F8EDC; --malmo:#CF7E2E;
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.45;-webkit-font-smoothing:antialiased}
-.wrap{max-width:1720px;margin:0 auto;padding-block:20px 40px;padding-inline:clamp(16px,2.5vw,40px)}
-h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance;letter-spacing:-.01em}
-.num{font-variant-numeric:tabular-nums}
-button{font:inherit;color:inherit;cursor:pointer}
-button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-
-/* header */
-.top{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:22px}
-.brandline{display:flex;align-items:center;gap:14px}
-.mark{width:46px;height:46px;border-radius:12px;background:var(--brand);color:var(--brand-ink);display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:-.03em}
-.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:600}
-h1{font-size:clamp(26px,2.6vw,40px);font-weight:700;line-height:1.05}
-.month{font-family:var(--display);font-size:clamp(16px,1.3vw,20px);color:var(--muted);font-weight:500}
-.controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.tabs{display:flex;background:var(--card2);border:1px solid var(--line);border-radius:999px;padding:3px}
-.tab{border:0;background:transparent;border-radius:999px;padding:8px 16px;font-weight:600;color:var(--muted)}
-.tab[aria-selected="true"]{background:var(--brand);color:var(--brand-ink)}
-.ghost{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:8px 14px;font-weight:600;display:inline-flex;gap:8px;align-items:center}
-.ghost[aria-pressed="true"]{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
-.dot{width:8px;height:8px;border-radius:50%;background:var(--muted)}
-.ghost[aria-pressed="true"] .dot{background:var(--sthlm);animation:pulse 1.6s infinite}
-@keyframes pulse{50%{opacity:.35}}
-@media (prefers-reduced-motion:reduce){.ghost[aria-pressed="true"] .dot{animation:none}}
-
-/* layout */
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+.wrap{max-width:1640px;margin:0 auto;padding-block:28px 48px;padding-inline:clamp(16px,3vw,56px)}
+h1,h2,h3{margin:0;font-weight:400;text-wrap:balance}
+.serif{font-family:var(--serif)}
+.num{font-variant-numeric:tabular-nums lining-nums}
+.caps{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:var(--muted)}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--green);outline-offset:3px}
 .view[hidden]{display:none}
-.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-.grid2{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:18px}
-@media (max-width:1000px){.grid3,.grid2{grid-template-columns:1fr}}
-.stack{display:grid;gap:18px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px;box-shadow:var(--shadow)}
-.card h2{font-size:15px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:12px;display:flex;justify-content:space-between;align-items:baseline;gap:10px}
-.card h2 small{text-transform:none;letter-spacing:0;font-family:var(--body);font-weight:400;font-size:13px}
+[hidden]{display:none!important}
 
-/* office battle */
-.office{position:relative;overflow:hidden;display:grid;gap:8px;border-top:6px solid var(--oc)}
-.office .name{font-family:var(--display);font-size:clamp(20px,1.7vw,26px);font-weight:700;display:flex;align-items:center;gap:10px}
-.office .rank{font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
-.office .big{font-family:var(--display);font-size:clamp(44px,4.2vw,64px);font-weight:700;line-height:1;color:var(--oc)}
-.office .sub{color:var(--muted);font-size:13px}
-.meter{height:10px;border-radius:6px;background:var(--card2);overflow:hidden;margin-top:4px}
-.meter i{display:block;height:100%;background:var(--oc);border-radius:6px;transition:width .6s ease}
-.kv{display:flex;gap:18px;flex-wrap:wrap;margin-top:6px}
-.kv div{font-size:13px;color:var(--muted)}
-.kv b{color:var(--ink);font-weight:600}
-.crown{position:absolute;right:16px;top:14px;font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;background:var(--gold);color:#141414;padding:4px 10px;border-radius:999px}
+/* masthead */
+.mast{display:grid;grid-template-columns:1fr auto;gap:24px 40px;align-items:end;padding-bottom:22px;border-bottom:1px solid var(--line-strong)}
+.mast .eyebrow{display:flex;gap:14px;align-items:center;margin-bottom:10px}
+.mast .eyebrow .sep{width:28px;height:1px;background:var(--line-strong)}
+h1{font-family:var(--serif);font-size:clamp(44px,5.4vw,84px);line-height:.95;letter-spacing:-.015em}
+h1 em{font-style:italic;color:var(--green)}
+.period{margin-top:10px;font-family:var(--serif);font-style:italic;font-size:clamp(17px,1.4vw,22px);color:var(--muted)}
+nav.tabs{display:flex;gap:26px;justify-content:flex-end}
+.tab{font-family:var(--serif);font-size:clamp(18px,1.4vw,22px);color:var(--muted);padding-bottom:6px;border-bottom:1px solid transparent}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--ink)}
+.tools{display:flex;gap:22px;justify-content:flex-end;align-items:center;margin-top:14px}
+.tools button,.tools select{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:none;border:0;font-family:var(--sans);font-weight:500}
+.tools select{appearance:none;-webkit-appearance:none;padding-right:14px;background-image:linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(-45deg,transparent 50%,currentColor 50%);background-position:right 4px top 55%,right 0 top 55%;background-size:4px 4px;background-repeat:no-repeat;cursor:pointer}
+.tools button:hover{color:var(--ink)}
+.tools .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--faint);margin-right:8px;vertical-align:1px}
+.tools [aria-pressed="true"]{color:var(--ink)}
+.tools [aria-pressed="true"] .dot{background:var(--green);animation:pulse 1.8s infinite}
+@keyframes pulse{50%{opacity:.3}}
+@media (prefers-reduced-motion:reduce){.tools [aria-pressed="true"] .dot{animation:none}}
+@media (max-width:900px){.mast{grid-template-columns:1fr}nav.tabs,.tools{justify-content:flex-start}}
 
-/* leaderboards */
-.lb{list-style:none;margin:0;padding:0;display:grid;gap:6px}
-.lb li{display:grid;grid-template-columns:28px minmax(0,1fr) auto;align-items:center;gap:12px;padding:8px 10px;border-radius:10px;background:var(--card2)}
-.lb li:first-child{background:color-mix(in oklab,var(--oc,var(--brand)) 14%,var(--card2))}
-.lb .pos{font-family:var(--display);font-weight:700;color:var(--muted);text-align:center}
-.lb li:first-child .pos{color:var(--oc,var(--brand))}
-.lb .who{min-width:0}
-.lb .who b{display:block;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.lb .who span{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
-.lb .pts{font-family:var(--display);font-weight:700;font-size:18px}
-.lb .pts small{font-family:var(--body);font-weight:500;font-size:11px;color:var(--muted);margin-left:2px}
-.chip{display:inline-block;font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--card2);color:var(--muted);border:1px solid var(--line)}
-.trend{font-size:12px;font-weight:600}
-.trend.up{color:var(--sthlm)}.trend.down{color:var(--malmo)}.trend.flat{color:var(--muted)}
+/* sections */
+.sec{padding-top:20px;margin-top:34px}
+.sechead{display:flex;justify-content:space-between;gap:16px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.sechead small{letter-spacing:0;text-transform:none;font-size:12.5px;font-weight:400;color:var(--faint)}
+.cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.cols>*{padding:22px 28px 26px;border-right:1px solid var(--line)}
+.cols>*:first-child{padding-left:0}.cols>*:last-child{border-right:0;padding-right:0}
+@media (max-width:1000px){.cols{grid-template-columns:1fr}.cols>*{padding:20px 0;border-right:0;border-bottom:1px solid var(--line)}.cols>*:last-child{border-bottom:0}}
+.two{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:0 56px}
+@media (max-width:1000px){.two{grid-template-columns:1fr;gap:32px}}
 
-/* areas */
-.bars{display:grid;gap:10px}
-.bar{display:grid;grid-template-columns:minmax(0,190px) 1fr auto;gap:12px;align-items:center;font-size:14px}
-.bar .lab{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500}
-.bar .lab span{color:var(--muted);font-size:12px;margin-left:6px}
-.bar .track{height:14px;background:var(--card2);border-radius:4px 7px 7px 4px;overflow:hidden}
-.bar .track i{display:block;height:100%;background:var(--brand);border-radius:0 7px 7px 0;transition:width .6s}
-.bar .val{font-family:var(--display);font-weight:700;min-width:44px;text-align:right}
+/* kontorskampen */
+.office .rank{display:flex;justify-content:space-between;align-items:baseline}
+.office .rank i{font-style:normal;color:var(--ink)}
+.office .rank .lead{color:var(--green);font-weight:600}
+.office h3{font-family:var(--serif);font-size:clamp(28px,2.4vw,40px);line-height:1.05;margin-top:10px;display:inline-block;padding-bottom:6px;border-bottom:3px solid var(--oc)}
+.office .big{font-family:var(--serif);font-size:clamp(72px,8vw,132px);line-height:.9;letter-spacing:-.03em;margin-top:18px;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.office .big .trend{font-family:var(--sans);font-size:13px;letter-spacing:0}
+.office .lbl{color:var(--muted);font-size:13px;margin-top:8px}
+.office .meter{height:2px;background:var(--line);margin-top:22px;position:relative}
+.office .meter i{position:absolute;inset:0 auto 0 0;background:var(--oc);transition:width .7s cubic-bezier(.2,.7,.2,1)}
+.office .facts{margin-top:14px;font-size:13.5px;color:var(--muted);display:grid;gap:3px}
+.office .facts b{color:var(--ink);font-weight:500}
 
-/* awards */
-.awards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
-.award{background:var(--card2);border-radius:12px;padding:14px 14px 12px;display:grid;gap:4px;border:1px solid var(--line)}
-.award .t{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:600}
-.award .w{font-family:var(--display);font-weight:700;font-size:18px;line-height:1.15}
-.award .d{font-size:12.5px;color:var(--muted)}
-.award .w.pending{color:var(--muted);font-weight:500;font-size:15px}
+/* listor */
+.lb{list-style:none;margin:0;padding:0}
+.lb li{display:grid;grid-template-columns:26px minmax(0,1fr) auto;gap:14px;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--line)}
+.lb li:last-child{border-bottom:0}
+.lb .pos{font-family:var(--serif);font-size:17px;color:var(--faint)}
+.lb li:first-child .pos{color:var(--oc,var(--green))}
+.lb .who b{font-weight:500;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lb li:first-child .who b{font-family:var(--serif);font-size:20px;font-weight:400}
+.lb .who span{display:block;font-size:12.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lb .pts{font-family:var(--serif);font-size:22px;text-align:right;white-space:nowrap}
+.lb .pts .trend{display:block;font-family:var(--sans);font-size:11.5px;text-align:right}
+.trend{color:var(--muted);letter-spacing:.02em}
+.trend.up{color:var(--sthlm)}.trend.down{color:var(--malmo)}
+.colhead{font-family:var(--serif);font-size:24px;display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+.colhead small{font-family:var(--sans);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 
-/* history */
-.chart{width:100%;height:auto;display:block}
-.chart text{fill:var(--muted);font-family:var(--body);font-size:12px}
+/* områden */
+.bars{margin-top:8px}
+.bar{display:grid;grid-template-columns:minmax(0,220px) 1fr auto;gap:18px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.bar:last-child{border-bottom:0}
+.bar .lab{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar .lab span{color:var(--faint);font-size:12px;margin-left:8px}
+.bar .track{height:2px;background:var(--line);position:relative}
+.bar .track i{position:absolute;inset:0 auto 0 0;background:var(--ink);transition:width .7s}
+.bar:first-child .track i{background:var(--green)}
+.bar:first-child .lab{font-family:var(--serif);font-size:19px}
+.bar .val{font-family:var(--serif);font-size:22px;min-width:52px;text-align:right}
+
+/* utmärkelser */
+.awards{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:0 28px;margin-top:6px}
+.award{padding:16px 0 18px;border-bottom:1px solid var(--line)}
+.award .w{font-family:var(--serif);font-size:clamp(22px,1.7vw,28px);line-height:1.1;margin-top:8px}
+.award .w.pending{font-style:italic;color:var(--muted);font-size:16px}
+.award .d{font-size:12.5px;color:var(--muted);margin-top:6px}
+.award .who{font-size:12.5px;color:var(--faint)}
+
+/* historik */
+.chart{width:100%;height:auto;display:block;margin-top:14px}
+.chart text{fill:var(--muted);font-family:var(--sans);font-size:11.5px}
 .chart .grid line{stroke:var(--line)}
-.chart .axis{stroke:var(--line)}
-.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin-top:8px}
-.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-2px}
-table{width:100%;border-collapse:collapse;font-size:14px}
-th{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);font-weight:600}
-td{padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top}
-tr:last-child td{border-bottom:0}
+.chart .axis{stroke:var(--line-strong)}
+.chart .lbl{font-family:var(--serif);font-size:14px}
+.legend{display:flex;gap:20px;font-size:12.5px;color:var(--muted);margin-top:6px}
+.legend i{display:inline-block;width:14px;height:2px;margin-right:8px;vertical-align:3px}
+table{width:100%;border-collapse:collapse;font-size:14px;margin-top:8px}
+th{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-align:left;padding:10px 12px 10px 0;border-bottom:1px solid var(--line);font-weight:500}
+td{padding:12px 12px 12px 0;border-bottom:1px solid var(--line);vertical-align:baseline}
+td.n,th.n{text-align:right;padding-right:0}
+td.serif{font-family:var(--serif);font-size:18px}
 .tablewrap{overflow-x:auto}
-.empty{color:var(--muted);padding:24px;text-align:center;border:1px dashed var(--line);border-radius:12px}
+.empty{color:var(--muted);font-style:italic;font-family:var(--serif);font-size:18px;padding:28px 0}
 
-/* rules view */
-.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
-.rule .big{font-family:var(--display);font-size:38px;font-weight:700;color:var(--brand);line-height:1}
-.rule p{margin:8px 0 0;color:var(--muted);font-size:14px}
-.formula{font-family:var(--display);font-size:clamp(18px,1.6vw,24px);font-weight:600;padding:16px 20px;border-radius:12px;background:var(--brand);color:var(--brand-ink);margin-bottom:18px}
-.formula span{opacity:.75;font-weight:500}
+/* regler */
+.formula{font-family:var(--serif);font-size:clamp(26px,3vw,46px);line-height:1.2;padding:26px 0 30px;border-bottom:1px solid var(--line)}
+.formula em{color:var(--green)}
+.formula span{color:var(--faint)}
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0 40px}
+.rule{padding:22px 0 26px;border-bottom:1px solid var(--line)}
+.rule .big{font-family:var(--serif);font-size:44px;line-height:1;color:var(--green)}
+.rule h3{font-family:var(--serif);font-size:22px;margin-top:10px}
+.rule p{margin:8px 0 0;color:var(--muted);font-size:14px;max-width:38ch}
+.note{font-size:13.5px;color:var(--muted);margin:22px 0 0;max-width:72ch}
+
+.foot{margin-top:48px;padding-top:14px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--faint);font-size:12px}
 
 /* admin */
-.admin{position:fixed;inset:0;background:rgba(20,20,20,.45);display:grid;place-items:start end;z-index:20}
-.admin[hidden]{display:none}
-.panel{background:var(--card);color:var(--ink);height:100%;width:min(640px,100%);overflow:auto;padding:22px 24px 40px;box-shadow:-12px 0 40px rgba(0,0,0,.25);display:grid;gap:22px;align-content:start}
-.panel h2{font-size:22px;font-weight:700;display:flex;justify-content:space-between;align-items:center}
-.panel h3{font-size:14px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:600;margin-bottom:10px}
-.panel section{border-top:1px solid var(--line);padding-top:18px}
-.field{display:grid;gap:6px;font-size:13px;color:var(--muted)}
-.field input,.field select{font:inherit;color:var(--ink);background:var(--card2);border:1px solid var(--line);border-radius:8px;padding:8px 10px}
-.row{display:flex;gap:10px;flex-wrap:wrap;align-items:end}
-.row .field{flex:1 1 140px}
-.primary{background:var(--brand);color:var(--brand-ink);border:0;border-radius:999px;padding:10px 18px;font-weight:600}
-.primary:disabled{opacity:.5;cursor:not-allowed}
-.drop{border:2px dashed var(--line);border-radius:12px;padding:18px;text-align:center;color:var(--muted);background:var(--card2)}
-.drop.over{border-color:var(--accent)}
+.admin{position:fixed;inset:0;background:rgba(19,22,20,.35);display:grid;place-items:start end;z-index:20;backdrop-filter:blur(2px)}
+.panel{background:var(--bg);color:var(--ink);height:100%;width:min(660px,100%);overflow:auto;padding:28px 32px 48px;border-left:1px solid var(--line-strong);display:grid;gap:8px;align-content:start}
+.panel h2{font-family:var(--serif);font-size:34px;display:flex;justify-content:space-between;align-items:baseline;padding-bottom:16px;border-bottom:1px solid var(--line-strong)}
+.panel h2 button{font-family:var(--sans);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.panel section{padding:22px 0 26px;border-bottom:1px solid var(--line)}
+.panel h3{font-family:var(--serif);font-size:22px;margin-bottom:6px}
+.panel h3 span{font-family:var(--sans);font-size:12.5px;color:var(--faint)}
+.panel .note{margin:0 0 14px}
+.panel code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;background:var(--wash);padding:1px 5px;border-radius:3px}
+.field{display:grid;gap:5px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.field input,.field select{font:inherit;font-family:var(--sans);font-size:15px;letter-spacing:0;text-transform:none;color:var(--ink);background:transparent;border:0;border-bottom:1px solid var(--line-strong);padding:6px 0}
+.row{display:flex;gap:18px;flex-wrap:wrap;align-items:end}
+.row .field{flex:1 1 130px}
+.primary{background:var(--green);color:var(--green-ink);padding:10px 18px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:500}
+.primary:disabled{opacity:.4;cursor:not-allowed}
+.ghost{padding:10px 0;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--line-strong)}
+.ghost:hover{color:var(--ink)}
+.drop{border:1px dashed var(--line-strong);padding:22px;text-align:center;color:var(--muted);font-family:var(--serif);font-style:italic;font-size:17px}
+.drop.over{border-color:var(--green);background:var(--wash)}
 .status{font-size:13px;color:var(--muted);min-height:1.4em}
-.status.ok{color:var(--sthlm)}.status.err{color:#DE1135}
-.roster{display:grid;gap:6px;max-height:420px;overflow:auto;border:1px solid var(--line);border-radius:10px;padding:8px}
-.person{display:grid;grid-template-columns:minmax(0,1fr) 120px auto;gap:8px;align-items:center;font-size:13px;padding:6px 8px;border-radius:8px}
-.person:nth-child(odd){background:var(--card2)}
-.person b{display:block;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.status.ok{color:var(--sthlm)}.status.err{color:var(--malmo)}
+.roster{display:grid;max-height:420px;overflow:auto;border-top:1px solid var(--line)}
+.person{display:grid;grid-template-columns:minmax(0,1fr) 130px auto;gap:12px;align-items:center;font-size:13px;padding:10px 0;border-bottom:1px solid var(--line)}
+.person b{display:block;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .person small{color:var(--muted);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.person select{font:inherit;font-size:12px;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:6px;padding:4px 6px;max-width:100%}
-.person label{font-size:12px;color:var(--muted);display:flex;gap:4px;align-items:center;white-space:nowrap}
-.areasel{display:flex;gap:4px;flex-wrap:wrap}
-.areasel label{border:1px solid var(--line);border-radius:999px;padding:1px 7px;font-size:11px}
+.person select{font:inherit;font-size:12.5px;color:var(--ink);background:transparent;border:0;border-bottom:1px solid var(--line-strong);padding:4px 0;max-width:100%}
+.person label{font-size:12px;color:var(--muted);display:flex;gap:6px;align-items:center;white-space:nowrap}
+.areasel{display:flex;gap:4px 10px;flex-wrap:wrap;margin-top:4px}
+.areasel label{font-size:11.5px}
 .areasel input{margin:0}
-.person.unplaced{outline:2px solid var(--malmo);outline-offset:-2px}
-.note{font-size:12.5px;color:var(--muted);margin:0}
-.footer{margin-top:22px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:12.5px}
-.gear{border:1px solid var(--line);background:var(--card);border-radius:999px;width:38px;height:38px;display:grid;place-items:center}
-.gear svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8}
-.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:999px;font-weight:600;font-size:14px;opacity:0;pointer-events:none;transition:opacity .25s;z-index:30}
+.person.unplaced b::after{content:"Ej placerad";font-family:var(--sans);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--malmo);margin-left:8px;font-weight:500}
+.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;font-size:13px;letter-spacing:.04em;opacity:0;pointer-events:none;transition:opacity .25s;z-index:30}
 .toast.show{opacity:1}
 </style>
 
 </head>
 <body>
 <div class="wrap">
-  <header class="top">
-    <div class="brandline">
-      <div class="mark">AI</div>
-      <div>
-        <div class="eyebrow">Foyen · månadens omgång</div>
-        <h1>Foyen AI-ligan</h1>
-        <div class="month" id="monthLabel">Laddar…</div>
-      </div>
+  <header class="mast">
+    <div>
+      <div class="eyebrow"><span class="caps">Foyen · AI-ligan</span><span class="sep"></span><span class="caps" id="roundLabel"></span></div>
+      <h1 id="monthLabel">Laddar…</h1>
+      <div class="period" id="periodLabel"></div>
     </div>
-    <div class="controls">
-      <div class="tabs" role="tablist" aria-label="Vy">
+    <div>
+      <nav class="tabs" role="tablist" aria-label="Vy">
         <button class="tab" role="tab" id="tab-now" aria-selected="true" data-view="now">Månaden</button>
         <button class="tab" role="tab" id="tab-hist" aria-selected="false" data-view="hist">Historik</button>
         <button class="tab" role="tab" id="tab-rules" aria-selected="false" data-view="rules">Så räknas det</button>
+      </nav>
+      <div class="tools">
+        <select id="monthPick" aria-label="Välj månad"></select>
+        <button id="rotate" aria-pressed="false" title="Växlar vy automatiskt – för skärmen"><span class="dot"></span>Skärmläge</button>
+        <button id="openAdmin" title="Ny månad, poängvikter, deltagare">Administrera</button>
       </div>
-      <select id="monthPick" class="ghost" aria-label="Välj månad" style="padding:8px 12px"></select>
-      <button class="ghost" id="rotate" aria-pressed="false" title="Växlar vy automatiskt – för skärmen"><span class="dot"></span>Skärmläge</button>
-      <button class="gear" id="openAdmin" aria-label="Administrera" title="Ladda upp ny månad, hantera deltagare">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
-      </button>
     </div>
   </header>
 
-  <!-- VIEW: current month -->
   <section class="view" id="view-now">
-    <div class="stack">
-      <div class="grid3" id="officeCards"></div>
-      <div class="grid3" id="officeBoards"></div>
-      <div class="grid2">
-        <div class="card">
-          <h2>Områdesmästare <small>snitt AI-poäng per person i området</small></h2>
-          <div class="bars" id="areaBars"></div>
-        </div>
-        <div class="card">
-          <h2>Utmärkelser</h2>
-          <div class="awards" id="awards"></div>
-        </div>
+    <div class="sec">
+      <div class="caps sechead"><span>Kontorskampen</span><small>Snitt AI-poäng per licens – alla med en Claude-plats räknas</small></div>
+      <div class="cols" id="officeCards"></div>
+    </div>
+    <div class="sec">
+      <div class="caps sechead"><span>Topplistor</span><small id="topNote"></small></div>
+      <div class="cols" id="officeBoards"></div>
+    </div>
+    <div class="sec two">
+      <div>
+        <div class="caps sechead"><span>Områdesmästare</span><small>Snitt per person i området</small></div>
+        <div class="bars" id="areaBars"></div>
+      </div>
+      <div>
+        <div class="caps sechead"><span>Utmärkelser</span><small>Ett pris per person</small></div>
+        <div class="awards" id="awards"></div>
       </div>
     </div>
   </section>
 
-  <!-- VIEW: history -->
   <section class="view" id="view-hist" hidden>
-    <div class="stack">
-      <div class="grid2">
-        <div class="card">
-          <h2>Kontorskampen över tid <small>snitt AI-poäng per licens</small></h2>
-          <div id="histChart"></div>
-        </div>
-        <div class="card">
-          <h2>Hela firman <small>per månad</small></h2>
-          <div class="tablewrap"><table id="firmTable"></table></div>
-        </div>
+    <div class="sec two">
+      <div>
+        <div class="caps sechead"><span>Kontorskampen över tid</span><small>Snitt AI-poäng per licens</small></div>
+        <div id="histChart"></div>
       </div>
-      <div class="card">
-        <h2>Hall of fame <small>vinnare per omgång</small></h2>
-        <div class="tablewrap"><table id="hofTable"></table></div>
+      <div>
+        <div class="caps sechead"><span>Hela firman</span><small>Per omgång</small></div>
+        <div class="tablewrap"><table id="firmTable"></table></div>
       </div>
+    </div>
+    <div class="sec">
+      <div class="caps sechead"><span>Hall of fame</span><small>Vinnare per omgång</small></div>
+      <div class="tablewrap"><table id="hofTable"></table></div>
     </div>
   </section>
 
-  <!-- VIEW: rules -->
   <section class="view" id="view-rules" hidden>
-    <div class="formula" id="formula"></div>
-    <div class="rules" id="rulesCards"></div>
-    <p class="note" style="margin-top:18px">Kontor och områden tävlar på <b>snitt per licens</b> – alla som har en Claude-plats räknas, även den som inte använt den. Det lönar sig alltså att hjälpa en kollega igång. Individuella listor visar bara toppen. Administratörer och delade konton står utanför prisjakten.</p>
+    <div class="sec">
+      <div class="caps sechead"><span>Poängen</span></div>
+      <div class="formula" id="formula"></div>
+      <div class="rules" id="rulesCards"></div>
+      <p class="note">Kontor och områden tävlar på snitt per licens – alla som har en Claude-plats räknas, även den som inte använt den. Det lönar sig alltså att hjälpa en kollega igång. Individuella listor visar bara toppen. Administratörer och delade konton står utanför prisjakten.</p>
+    </div>
   </section>
 
-  <footer class="footer">
+  <footer class="foot">
     <span id="footNote">Källa: Claude-adminexport (Members analytics). Kontor och arbetsområden från foyen.se/medarbetare.</span>
     <span id="syncNote"></span>
   </footer>
 </div>
 
-<!-- ADMIN -->
 <div class="admin" id="admin" hidden>
   <div class="panel" role="dialog" aria-labelledby="adminTitle">
-    <h2 id="adminTitle">Administrera <button class="ghost" id="closeAdmin">Stäng</button></h2>
+    <h2 id="adminTitle">Administrera <button id="closeAdmin">Stäng</button></h2>
 
     <section>
-      <h3>1 · Ny månad</h3>
+      <h3>Ny månad</h3>
       <p class="note">Sidan läser alla CSV-filer som listas i <code>data/index.json</code>. För att lägga till en månad: exportera <i>Members analytics</i> från Claude-adminpanelen, lägg filen i <code>data/csv/</code> i GitHub-repot och lägg till filnamnet i <code>data/index.json</code>. Vercel publicerar om automatiskt. Släpp filen här för att förhandsgranska resultatet innan du checkar in den.</p>
-      <div class="drop" id="drop" style="margin-top:10px">
+      <div class="drop" id="drop">
         <input type="file" id="file" accept=".csv,text/csv" style="display:none">
         <button class="ghost" id="pickFile">Välj CSV-fil</button> <span id="fileName"> eller dra och släpp här</span>
       </div>
-      <div class="row" style="margin-top:12px">
-        <label class="field">Månadsnyckel (ÅÅÅÅ-MM)<input id="mKey" placeholder="2026-10"></label>
+      <div class="row" style="margin-top:18px">
+        <label class="field">Månadsnyckel<input id="mKey" placeholder="2026-10"></label>
         <label class="field">Visningsnamn<input id="mLabel" placeholder="Oktober 2026"></label>
         <label class="field">Period<input id="mPeriod" placeholder="10 sep – 9 okt 2026"></label>
       </div>
-      <div class="row" style="margin-top:12px;align-items:center">
+      <div class="row" style="margin-top:18px;align-items:center">
         <button class="primary" id="saveMonth" disabled>Förhandsgranska</button>
         <span class="status" id="uploadStatus"></span>
       </div>
     </section>
 
     <section>
-      <h3>2 · Poängvikter</h3>
+      <h3>Poängvikter</h3>
       <div class="row">
         <label class="field">Per meddelande<input type="number" id="wMsg" min="0" step="0.5"></label>
         <label class="field">Per aktiv dag<input type="number" id="wDay" min="0"></label>
         <label class="field">Per projekt<input type="number" id="wProj" min="0"></label>
         <label class="field">Per artefakt (0 = räknas ej)<input type="number" id="wArt" min="0"></label>
         <label class="field">Topplista visar<input type="number" id="topN" min="3" max="10"></label>
-        <label class="field">Skärmläge byter vy var (sek)<input type="number" id="rotateSeconds" min="5"></label>
+        <label class="field">Skärmläge byter var (sek)<input type="number" id="rotateSeconds" min="5"></label>
       </div>
-      <div class="row" style="margin-top:12px;align-items:center">
+      <div class="row" style="margin-top:18px;align-items:center">
         <button class="primary" id="saveSettings">Prova vikterna</button> <button class="ghost" id="dlSettings">Ladda ner settings.json</button>
         <span class="status" id="settingsStatus"></span>
       </div>
-      <p class="note">Vikterna gäller retroaktivt för alla månader. Ändringar här syns bara i din vy – ladda ner filen och ersätt <code>data/settings.json</code> i repot för att göra dem permanenta.</p>
+      <p class="note" style="margin-top:12px">Vikterna gäller retroaktivt för alla månader. Ändringar här syns bara i din vy – ladda ner filen och ersätt <code>data/settings.json</code> i repot för att göra dem permanenta.</p>
     </section>
 
     <section>
-      <h3>3 · Deltagare <span id="rosterCount" style="font-weight:400;text-transform:none;letter-spacing:0"></span></h3>
-      <p class="note">Personer som saknas på foyen.se/medarbetare markeras med orange kant – sätt kontor och område här. Bocka i <i>Utanför</i> för admins och delade konton. Ladda ner filen och ersätt <code>data/roster.json</code> i repot.</p>
-      <div class="roster" id="rosterList" style="margin-top:10px"></div>
-      <div class="row" style="margin-top:12px;align-items:center">
+      <h3>Deltagare <span id="rosterCount"></span></h3>
+      <p class="note">Personer som saknas på foyen.se/medarbetare är markerade – sätt kontor och område här. Bocka i <i>Utanför</i> för admins och delade konton. Ladda ner filen och ersätt <code>data/roster.json</code> i repot.</p>
+      <div class="roster" id="rosterList"></div>
+      <div class="row" style="margin-top:18px;align-items:center">
         <button class="primary" id="saveRoster">Prova ändringarna</button> <button class="ghost" id="dlRoster">Ladda ner roster.json</button>
         <span class="status" id="rosterStatus"></span>
       </div>
@@ -368,43 +384,49 @@ function compute(key){
 function daysIn(m){ if(m.fromDate && m.toDate){ const d=(new Date(m.toDate)-new Date(m.fromDate))/864e5+1; if(d>0&&d<62) return Math.round(d);} return 30; }
 
 // ---------- rendering ----------
-function medal(i){ return ["🥇","🥈","🥉"][i] || (i+1); }
+const ORD = ["Leder","Andra","Tredje"];
 function trend(cur, prev){
   if(prev==null) return "";
-  const d = cur-prev; if(Math.abs(d)<1) return `<span class="trend flat">±0</span>`;
+  const d = cur-prev; if(Math.abs(d)<1) return `<span class="trend">±0</span>`;
   return `<span class="trend ${d>0?"up":"down"}">${d>0?"▲":"▼"} ${fmt(Math.abs(d))}</span>`;
 }
+function pct(a,b){ return b ? Math.round(a/b*100) : 0; }
 function renderNow(c){
-  $("#monthLabel").textContent = c ? `${c.month.label} · ${c.month.period||""}` : "Ingen månad uppladdad ännu";
-  if(!c){ $("#officeCards").innerHTML = `<div class="empty" style="grid-column:1/-1">Ladda upp den första månadens CSV via kugghjulet uppe till höger.</div>`; $("#officeBoards").innerHTML=""; $("#areaBars").innerHTML=""; $("#awards").innerHTML=""; return; }
+  const ks = monthKeys();
+  if(!c){ $("#monthLabel").textContent="Ingen omgång ännu"; $("#periodLabel").textContent=""; $("#roundLabel").textContent="";
+    $("#officeCards").innerHTML = `<div class="empty" style="grid-column:1/-1;border:0">Ladda upp den första månadens CSV under Administrera.</div>`; $("#officeBoards").innerHTML=""; $("#areaBars").innerHTML=""; $("#awards").innerHTML=""; return; }
+  const [mon, yr] = c.month.label.split(" ");
+  $("#monthLabel").innerHTML = `${esc(mon)} <em>${esc(yr||"")}</em>`;
+  $("#periodLabel").textContent = c.month.period||"";
+  $("#roundLabel").textContent = `Omgång ${ks.indexOf(c.key)+1}`;
   const maxAvg = Math.max(...c.offices.map(o=>o.avg),1);
   $("#officeCards").innerHTML = c.offices.map((o,i)=>`
-    <div class="card office" style="--oc:${OFFICE_VAR[o.name]}">
-      ${i===0?`<span class="crown">Leder kontorskampen</span>`:""}
-      <div class="rank">${i+1}. plats</div>
-      <div class="name">${esc(o.name)}</div>
-      <div class="big num">${fmt(o.avg)}</div>
-      <div class="sub">snitt AI-poäng per licens ${trend(o.avg,o.prevAvg)}</div>
+    <div class="office" style="--oc:${OFFICE_VAR[o.name]}">
+      <div class="rank caps"><span class="${i===0?"lead":""}">${ORD[i]}</span><span>${o.count} licenser</span></div>
+      <h3>${esc(o.name)}</h3>
+      <div class="big num">${fmt(o.avg)} ${trend(o.avg,o.prevAvg)}</div>
+      <div class="lbl">AI-poäng per licens i snitt</div>
       <div class="meter"><i style="width:${(o.avg/maxAvg*100).toFixed(1)}%"></i></div>
-      <div class="kv"><div><b class="num">${o.count}</b> licenser</div><div><b class="num">${o.count?Math.round(o.active/o.count*100):0}%</b> aktiva</div><div><b class="num">${o.regular}</b> använde 10+ dagar</div><div title="Andel av meddelandena som skickats i Cowork"><b class="num">${(o.chat+o.cowork)?Math.round(o.cowork/(o.chat+o.cowork)*100):0}%</b> i Cowork</div></div>
+      <div class="facts"><span><b class="num">${pct(o.active,o.count)} %</b> aktiva</span><span><b class="num">${o.regular}</b> använde Claude tio dagar eller fler</span><span><b class="num">${pct(o.cowork,o.chat+o.cowork)} %</b> av meddelandena i Cowork</span></div>
     </div>`).join("");
   const topN = state.settings.topN || 5;
+  $("#topNote").textContent = `Topp ${topN} per kontor · AI-poäng`;
   $("#officeBoards").innerHTML = c.offices.map(o=>`
-    <div class="card" style="--oc:${OFFICE_VAR[o.name]}">
-      <h2>Topp ${topN} · ${esc(o.name)}</h2>
+    <div style="--oc:${OFFICE_VAR[o.name]}">
+      <div class="colhead">${esc(o.name)}</div>
       ${o.top.length ? `<ol class="lb">${o.top.slice(0,topN).map((r,i)=>`
-        <li><span class="pos">${medal(i)}</span><span class="who"><b>${esc(r.name)}</b><span>${esc(r.title||"")}${r.title&&r.areas.length?" · ":""}${esc(r.areas[0]||"")}</span></span>
-        <span class="pts num">${fmt(r.pts)}<small>p</small> ${c.prevBy?trend(r.pts,c.prevBy[r.email]?.pts??0):""}</span></li>`).join("")}</ol>` : `<div class="empty">Inga deltagare</div>`}
+        <li><span class="pos num">${i+1}</span><span class="who"><b>${esc(r.name)}</b><span>${esc(r.title||"")}${r.title&&r.areas.length?" · ":""}${esc(r.areas[0]||"")}</span></span>
+        <span class="pts num">${fmt(r.pts)}${c.prevBy?trend(r.pts,c.prevBy[r.email]?.pts??0):""}</span></li>`).join("")}</ol>` : `<div class="empty">Inga deltagare</div>`}
     </div>`).join("");
   const maxA = Math.max(...c.areas.map(a=>a.avg),1);
   $("#areaBars").innerHTML = c.areas.map((a,i)=>`
-    <div class="bar" title="${esc(a.name)} · ${a.count} personer">
-      <div class="lab">${i===0?"🏆 ":""}${esc(a.name)}<span>${a.count} pers</span></div>
-      <div class="track"><i style="width:${(a.avg/maxA*100).toFixed(1)}%;${i===0?"":"opacity:.75"}"></i></div>
+    <div class="bar">
+      <div class="lab">${esc(a.name)}<span class="num">${a.count} pers</span></div>
+      <div class="track"><i style="width:${(a.avg/maxA*100).toFixed(1)}%"></i></div>
       <div class="val num">${fmt(a.avg)}</div>
     </div>`).join("") || `<div class="empty">Inga områden kopplade ännu</div>`;
   $("#awards").innerHTML = c.awards.map(a=>`
-    <div class="award"><div class="t">${esc(a.t)}</div>
+    <div class="award"><div class="caps">${esc(a.t)}</div>
       ${a.w ? `<div class="w">${esc(a.w.name)}</div><div class="d">${esc(a.d)}</div>` : `<div class="w pending">${esc(a.pending||"–")}</div>`}
     </div>`).join("");
 }
@@ -412,42 +434,41 @@ function renderNow(c){
 function renderHist(){
   const ks = monthKeys(); const cs = ks.map(compute);
   if(!cs.length){ $("#histChart").innerHTML = `<div class="empty">Historiken fylls på när fler månader laddas upp.</div>`; $("#firmTable").innerHTML=""; $("#hofTable").innerHTML=""; return; }
-  // line chart: avg per office per month
-  const W=720,H=300,pl=44,pr=16,pt=16,pb=36; const iw=W-pl-pr, ih=H-pt-pb;
-  const allVals = cs.flatMap(c=>c.offices.map(o=>o.avg)); const maxV = Math.max(...allVals,10)*1.1;
+  const W=760,H=320,pl=44,pr=70,pt=20,pb=36; const iw=W-pl-pr, ih=H-pt-pb;
+  const allVals = cs.flatMap(c=>c.offices.map(o=>o.avg)); const maxV = Math.max(...allVals,10)*1.12;
   const x = i => pl + (cs.length===1 ? iw/2 : i*iw/(cs.length-1)); const y = v => pt + ih - v/maxV*ih;
-  const ticks = 4; let grid=""; for(let t=0;t<=ticks;t++){ const v=maxV*t/ticks; grid += `<line x1="${pl}" x2="${W-pr}" y1="${y(v)}" y2="${y(v)}"/><text x="${pl-8}" y="${y(v)+4}" text-anchor="end">${fmt(v)}</text>`; }
-  const xl = cs.map((c,i)=>`<text x="${x(i)}" y="${H-12}" text-anchor="middle">${esc(c.month.label.split(" ")[0].slice(0,3))} ${esc((c.month.label.split(" ")[1]||"").slice(2))}</text>`).join("");
+  const ticks = 4; let grid=""; for(let t=1;t<=ticks;t++){ const v=maxV*t/ticks; grid += `<line x1="${pl}" x2="${W-pr}" y1="${y(v)}" y2="${y(v)}"/><text x="${pl-10}" y="${y(v)+4}" text-anchor="end">${fmt(v)}</text>`; }
+  const xl = cs.map((c,i)=>`<text class="lbl" x="${x(i)}" y="${H-10}" text-anchor="middle">${esc(c.month.label.split(" ")[0])}</text>`).join("");
   const series = OFFICES.map(o=>{
-    const pts = cs.map((c,i)=>[x(i), y(c.offices.find(z=>z.name===o)?.avg||0), c.offices.find(z=>z.name===o)?.avg||0]);
+    const pts = cs.map((c,i)=>{ const v=c.offices.find(z=>z.name===o)?.avg||0; return [x(i), y(v), v]; });
     const d = pts.map((p,i)=>(i?"L":"M")+p[0].toFixed(1)+" "+p[1].toFixed(1)).join(" ");
     const last = pts[pts.length-1];
-    return `<path d="${d}" fill="none" stroke="${OFFICE_VAR[o]}" stroke-width="2.5" stroke-linejoin="round"/>` +
-      pts.map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="4.5" fill="${OFFICE_VAR[o]}" stroke="var(--card)" stroke-width="2"><title>${esc(o)}: ${fmt(p[2])}</title></circle>`).join("") +
-      `<text x="${last[0]+10}" y="${last[1]+4}" style="fill:${OFFICE_VAR[o]};font-weight:600">${fmt(last[2])}</text>`;
+    return `<path d="${d}" fill="none" stroke="${OFFICE_VAR[o]}" stroke-width="2" stroke-linejoin="round"/>` +
+      pts.map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="4" fill="${OFFICE_VAR[o]}" stroke="var(--bg)" stroke-width="2"><title>${esc(o)}: ${fmt(p[2])}</title></circle>`).join("") +
+      `<text class="lbl" x="${last[0]+12}" y="${last[1]+5}" style="fill:var(--ink)">${esc(o)} ${fmt(last[2])}</text>`;
   }).join("");
-  $("#histChart").innerHTML = `<svg class="chart" viewBox="0 0 ${W+40} ${H}" role="img" aria-label="Snitt AI-poäng per kontor och månad"><g class="grid">${grid}</g><line class="axis" x1="${pl}" x2="${W-pr}" y1="${pt+ih}" y2="${pt+ih}"/>${xl}${series}</svg>
+  $("#histChart").innerHTML = `<svg class="chart" viewBox="0 0 ${W+60} ${H}" role="img" aria-label="Snitt AI-poäng per kontor och månad"><g class="grid">${grid}</g><line class="axis" x1="${pl}" x2="${W-pr}" y1="${pt+ih}" y2="${pt+ih}"/>${xl}${series}</svg>
     <div class="legend">${OFFICES.map(o=>`<span><i style="background:${OFFICE_VAR[o]}"></i>${esc(o)}</span>`).join("")}</div>`;
-  $("#firmTable").innerHTML = `<thead><tr><th>Månad</th><th>Snitt/licens</th><th>Aktiva</th><th>10+ dagar</th><th>Chatt</th><th>Cowork</th><th>Projekt</th></tr></thead><tbody>${[...cs].reverse().map(c=>`<tr><td><b>${esc(c.month.label)}</b><br><small style="color:var(--muted)">${esc(c.month.period||"")}</small></td><td class="num">${fmt(c.firm.avg)}</td><td class="num">${c.firm.active}/${c.firm.count}</td><td class="num">${c.firm.regular}</td><td class="num">${fmt(c.firm.chat)}</td><td class="num">${fmt(c.firm.cowork)}</td><td class="num">${c.firm.projects}</td></tr>`).join("")}</tbody>`;
-  $("#hofTable").innerHTML = `<thead><tr><th>Månad</th><th>Kontorskampen</th><th>Stockholm</th><th>Göteborg</th><th>Malmö</th><th>Områdesmästare</th><th>Uthålligheten</th><th>Projektbyggaren</th><th>Raketen</th></tr></thead><tbody>${[...cs].reverse().map(c=>{
-    const off = o => { const t=c.offices.find(z=>z.name===o)?.top[0]; return t?`${esc(t.name)}<br><small style="color:var(--muted)" class="num">${fmt(t.pts)} p</small>`:"–"; };
+  $("#firmTable").innerHTML = `<thead><tr><th>Omgång</th><th class="n">Snitt/licens</th><th class="n">Aktiva</th><th class="n">10+ dagar</th><th class="n">Chatt</th><th class="n">Cowork</th><th class="n">Projekt</th></tr></thead><tbody>${[...cs].reverse().map(c=>`<tr><td class="serif">${esc(c.month.label)}</td><td class="n serif num">${fmt(c.firm.avg)}</td><td class="n num">${c.firm.active}/${c.firm.count}</td><td class="n num">${c.firm.regular}</td><td class="n num">${fmt(c.firm.chat)}</td><td class="n num">${fmt(c.firm.cowork)}</td><td class="n num">${c.firm.projects}</td></tr>`).join("")}</tbody>`;
+  $("#hofTable").innerHTML = `<thead><tr><th>Omgång</th><th>Kontorskampen</th><th>Stockholm</th><th>Göteborg</th><th>Malmö</th><th>Områdesmästare</th><th>Uthålligheten</th><th>Projektbyggaren</th><th>Raketen</th></tr></thead><tbody>${[...cs].reverse().map(c=>{
+    const off = o => { const t=c.offices.find(z=>z.name===o)?.top[0]; return t?`${esc(t.name)}<br><small class="num" style="color:var(--muted)">${fmt(t.pts)} p</small>`:"–"; };
     const aw = t => { const a=c.awards.find(z=>z.t===t); return a?.w ? esc(a.w.name) : "–"; };
-    return `<tr><td><b>${esc(c.month.label)}</b></td><td><span class="chip" style="border-color:${OFFICE_VAR[c.offices[0].name]};color:${OFFICE_VAR[c.offices[0].name]}">${esc(c.offices[0].name)}</span></td><td>${off("Stockholm")}</td><td>${off("Göteborg")}</td><td>${off("Malmö")}</td><td>${c.areas[0]?esc(c.areas[0].name):"–"}</td><td>${aw("Uthålligheten")}</td><td>${aw("Projektbyggaren")}</td><td>${aw("Raketen")}</td></tr>`;}).join("")}</tbody>`;
+    return `<tr><td class="serif">${esc(c.month.label)}</td><td><span style="border-bottom:2px solid ${OFFICE_VAR[c.offices[0].name]}">${esc(c.offices[0].name)}</span></td><td>${off("Stockholm")}</td><td>${off("Göteborg")}</td><td>${off("Malmö")}</td><td>${c.areas[0]?esc(c.areas[0].name):"–"}</td><td>${aw("Uthålligheten")}</td><td>${aw("Projektbyggaren")}</td><td>${aw("Raketen")}</td></tr>`;}).join("")}</tbody>`;
 }
 
 function renderRules(){
   const w = state.settings;
   const terms = [["meddelanden",w.wMsg],["aktiva dagar",w.wDay],["projekt",w.wProj],["artefakter",w.wArt]].filter(x=>x[1]>0);
-  $("#formula").innerHTML = `AI-poäng <span>=</span> ` + terms.map(([n,v])=>`${n} × ${v}`).join(` <span>+</span> `);
+  $("#formula").innerHTML = `<em>AI-poäng</em> <span>=</span> ` + terms.map(([n,v])=>`${n} <span>×</span> ${v}`).join(` <span>+</span> `);
   const cards = [
     w.wMsg>0 && ["×"+w.wMsg,"Meddelanden","Varje meddelande i Claude-chatten och i Cowork räknas lika. Volym räknas – men det är inte allt."],
-    w.wDay>0 && ["×"+w.wDay,"Aktiva dagar","Varje dag du använt Claude ger en rejäl bonus. Vanan slår sprinten: 20 dagar à en fråga slår en dag med 300."],
+    w.wDay>0 && ["×"+w.wDay,"Aktiva dagar","Varje dag du använt Claude ger en rejäl bonus. Vanan slår sprinten: tjugo dagar à en fråga slår en dag med trehundra."],
     w.wProj>0 && ["×"+w.wProj,"Projekt","Att skapa ett projekt med egna instruktioner och material är ett tecken på att man börjat jobba på riktigt med verktyget."],
     w.wArt>0 && ["×"+w.wArt,"Artefakter","Dokument, verktyg och sidor som Claude byggt åt dig."],
     ["Snitt","Kontor & områden","Kontorskampen och Områdesmästare avgörs på snitt per licens, så att små och stora kontor kan mötas på lika villkor."],
     ["Topp "+(w.topN||5),"Individuellt","Bara toppen visas. Utmärkelserna Uthålligheten, Projektbyggaren, Raketen och Nykomlingen ger fler chanser att vinna än bara total volym – och ingen tar mer än ett pris per månad."],
   ].filter(Boolean);
-  $("#rulesCards").innerHTML = cards.map(([b,t,d])=>`<div class="card rule"><div class="big">${esc(b)}</div><h3 style="margin-top:8px;font-size:17px">${esc(t)}</h3><p>${esc(d)}</p></div>`).join("");
+  $("#rulesCards").innerHTML = cards.map(([b,t,d])=>`<div class="rule"><div class="big">${esc(b)}</div><h3>${esc(t)}</h3><p>${esc(d)}</p></div>`).join("");
 }
 
 function renderAll(){
@@ -591,7 +612,7 @@ try{ if(localStorage.getItem("ailigan.rotate")==="1") setRotate(true); }catch(e)
       months[ov.key||p.key] = { key:ov.key||p.key, label:ov.label||p.label, period:ov.period||p.per, fromDate:p.from, toDate:p.to, rows };
     }));
     state.months = months; renderAll();
-    $("#syncNote").textContent = `${Object.keys(months).length} månad(er) inlästa · roster uppdaterad ${roster.updatedAt||""}`;
+    $("#syncNote").textContent = `${Object.keys(months).length} omgång(ar) inlästa · deltagarlista uppdaterad ${roster.updatedAt||""}`;
   }catch(e){ renderAll(); $("#syncNote").textContent = "Kunde inte läsa data/: "+e.message; }
 })();
 </script>
