@@ -651,8 +651,10 @@
   "albin.lager@foyen.se": {
    "name": "Albin Lager",
    "offices": [],
-   "areas": [],
-   "title": "",
+   "areas": [
+    "Aktiemarknadsrätt"
+   ],
+   "title": "Biträdande jurist",
    "excluded": false,
    "note": ""
   },
@@ -1161,8 +1163,10 @@
   "maria.kinana@foyen.se": {
    "name": "Maria Kinana",
    "offices": [],
-   "areas": [],
-   "title": "",
+   "areas": [
+    "Affärsstöd"
+   ],
+   "title": "Kontorsassistent",
    "excluded": false,
    "note": ""
   },
