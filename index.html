@@ -422,7 +422,7 @@ function renderNow(c){
   const maxAvg = Math.max(...c.offices.map(o=>o.avg),1);
   $("#officeCards").innerHTML = c.offices.map((o,i)=>`
     <div class="office ${i===0?"leader":""}" style="--oc:${OFFICE_VAR[o.name]}">
-      <div class="rank caps"><span class="${i===0?"lead":""}">${i===0?"Leder kontorskampen":ORD[i]}</span><span>${o.count} licenser</span></div>
+      <div class="rank caps"><span class="${i===0?"lead":""}">${i===0?"Leder kontorskampen":ORD[i]}</span></div>
       <h3>${esc(o.name)}</h3>
       <div class="big num">${fmt(o.avg)} ${trend(o.avg,o.prevAvg)}</div>
       <div class="lbl">AI-poäng per licens i snitt</div>
